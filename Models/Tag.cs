@@ -10,6 +10,6 @@ namespace ArtX.Models
     {
         [Key]
         public int TagId { get; set; }
-        public int TagContent { get; set; }
+        public string TagContent { get; set; }
     }
 }

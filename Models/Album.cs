@@ -11,7 +11,7 @@ namespace ArtX.Models
         [Key]
         public int AlbumId { get; set; }
         [Required]
-        public int AlbumTitle { get; set; }
+        public string AlbumTitle { get; set; }
         
         public int UserId { get; set; }     //FK
     }

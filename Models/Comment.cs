@@ -11,7 +11,7 @@ namespace ArtX.Models
         [Key]
         public int CommentId { get; set; }
         [Required]
-        public int CommentContent { get; set; }
+        public string CommentContent { get; set; }
 
         public int UserId { get; set; }     //FK
         public int BookmarkId { get; set; } //FK
