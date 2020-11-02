@@ -17,7 +17,7 @@ namespace ArtX.Models
         [Required]
         public Image BookmarkContent { get; set; }
         public int BookmarkRating { get; set; }
-        public DateTime BookmarkDate { get; set; }  //p asta chiar il punem ?
+        public DateTime BookmarkDate { get; set; }  //p asta chiar il punem ? // DA
 
         public int AlbumId { get; set; } //are acelasi nume ca si cheia din Album.cs
                                          //astfel va vedea calculatorul ca este FK (cheie externa)
@@ -26,4 +26,20 @@ namespace ArtX.Models
        // public virtual Album Album { get; set; }
       //  public virtual ICollection<Comment> Comments { get; set; }
     }
+
+
+
+
+
+
+    // >> Pentru mai incolo.
+
+    /*public class BookmarkDBContext : DbContext
+    {
+        public BookmarkDBContext() : base("DBConnectionString") { }
+        public DbSet<Bookmark> Bookmarks { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+    }*/
+
 }
