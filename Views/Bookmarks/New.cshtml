@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+
+<h2>Adaugare bookmark</h2>
+<form method="post" action="/Bookmarks/New">
+
+    @Html.Label("Title", "Titlu Bookmark")
+    <br />
+
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+    <br /><br />
+
+    @Html.Label("Description", "Descriere Bookmark")
+    <br />
+
+    @Html.TextBox("Description", null, new { @class = "form-control" })
+    <br /><br />
+
+    @Html.Label("Content", "Content Bookmark")
+    <br />
+
+    <h1>Aici o sa putem incarca o poza.</h1>
+
+
+    <br /><br />
+
+    @*    @Html.Label("Selectati albumul")*@
+
+    @*    @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Categ, "Value", "Text"),
+        "Selectati categoria", new { @class = "form-control" })*@
+
+    @* name o sa fie CategoryId si ce este in value se paseaza catre server pe cheia CategoryId
+        name este atributul pe care il trimite catre controller prin post
+        iar denumirea categoriei este valoarea afisata in dropdown *@
+
+    <br />
+    <button type="submit">Adauga bookmarkul</button>
+</form>

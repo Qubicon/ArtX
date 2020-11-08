@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var bookmark in ViewBag.Bookmarks)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@bookmark.BookmarkTitle</div>
+        <div class="panel-body">
+            Continut bookmark: <strong>@bookmark.BookmarkContent</strong>
+            <br />
+            <span class="label label-success">@bookmark.BookmarkDate</span>
+            <br />
+            @*de pus si bookmark rating*@
+          @*  <i class="glyphicon glyphicon-globe"></i> @article.Category.CategoryName*@
+        </div>
+       @* <div class=" panel panel footer">
+            <a class="btn btn-success btn btn-sm" href="/Articles/Show/@article.Id">Afisare articol</a>
+        </div>*@
+    </div>
+}
+
+
