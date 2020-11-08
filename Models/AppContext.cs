@@ -11,8 +11,8 @@ namespace ArtX.Models
 
         public AppContext() : base("DBConnectionString")
         {
-            // Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext,
-            //ArtX.Migrations.Configuration>("DBConnectionString"));
+          //  Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext,
+           // ArtX.Migrations.Configuration>("DBConnectionString"));
         }
         public DbSet<Bookmark> Bookmarks { get; set; }
         public DbSet<Album> Albums { get; set; }

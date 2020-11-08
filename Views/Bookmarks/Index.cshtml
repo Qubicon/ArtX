@@ -8,11 +8,11 @@
 @foreach (var bookmark in ViewBag.Bookmarks)
 {
     <div class="panel panel-default">
-        <div class="panel-heading">@bookmark.BookmarkTitle</div>
+        <div class="panel-heading">@bookmark.Title</div>
         <div class="panel-body">
-            Continut bookmark: <strong>@bookmark.BookmarkContent</strong>
+            Continut bookmark: <strong>@bookmark.Content</strong>
             <br />
-            <span class="label label-success">@bookmark.BookmarkDate</span>
+            <span class="label label-success">@bookmark.Date</span>
             <br />
             @*de pus si bookmark rating*@
           @*  <i class="glyphicon glyphicon-globe"></i> @article.Category.CategoryName*@
