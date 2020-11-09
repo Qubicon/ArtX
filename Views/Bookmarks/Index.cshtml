@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Afisare bookmark-uri</h2>
+
+@foreach (var bookmark in ViewBag.Bookmarks)
+{
+    <h2>@bookmark.Title</h2>
+    <p>@bookmark.Content</p>
+    <p>@bookmark.Description</p>
+    <p>@bookmark.Date</p>
+    <p>@bookmark.Rating</p>
+    <p>@bookmark.Album.AlbumTitle</p>
+    <a href="/Bookmarks/Show/@bookmark.BookmarkId">Afisare bookmark</a>
+    <br />
+    <hr />
+    <br />
+
+}
+
+<a href="/Albums/Index/">Afisare albume</a>
+<br />
+<a href="/Bookmarks/New">Adauga articol</a>
+<br />

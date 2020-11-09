@@ -1,2 +1,0 @@
-# ArtX
-DAW Project

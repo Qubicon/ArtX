@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
 
 namespace ArtX.Models
 {
@@ -12,7 +12,13 @@ namespace ArtX.Models
         public int AlbumId { get; set; }
         [Required]
         public string AlbumTitle { get; set; }
-        
-        public int UserId { get; set; }     //FK
+
+        // Ce are legatura cu userii vom implementa mai tarziu
+
+        // public int UserId { get; set; } // FK
+
+
+        public virtual ICollection<Bookmark> Bookmarks {get; set;}
+
     }
 }
