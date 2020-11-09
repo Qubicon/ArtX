@@ -185,6 +185,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Bookmarks\Index.cshtml" />
     <Content Include="Views\Bookmarks\New.cshtml" />
+    <Content Include="Views\Bookmarks\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011090433376_Initial.resx">
