@@ -37,7 +37,7 @@
                 c => new
                     {
                         CommentId = c.Int(nullable: false, identity: true),
-                        CommentContent = c.String(nullable: false),
+                        Content = c.String(nullable: false),
                         UserId = c.Int(nullable: false),
                         BookmarkId = c.Int(nullable: false),
                     })

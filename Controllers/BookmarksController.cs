@@ -1,16 +1,14 @@
 ﻿using ArtX.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using static ArtX.Models.Bookmark;
 
 namespace ArtX.Controllers
 {
     public class BookmarksController : Controller
     {
-        private Models.AppContext db = new Models.AppContext();
+        private ArtX.Models.AppContext db = new ArtX.Models.AppContext();
+
         // GET: Bookmarks
         public ActionResult Index()
         {
@@ -91,6 +89,15 @@ namespace ArtX.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            Bookmark bookmark = db.Bookmarks.Find(id);
+            db.Bookmarks.Remove(bookmark);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

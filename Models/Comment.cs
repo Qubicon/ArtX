@@ -11,9 +11,11 @@ namespace ArtX.Models
         [Key]
         public int CommentId { get; set; }
         [Required]
-        public string CommentContent { get; set; }
+        public string Content { get; set; }
+        public DateTime Date { get; set; }
 
-        public int UserId { get; set; } // FK
+        // Tine de useri, deci e pentru mai incolo
+        // public int UserId { get; set; } // FK
         public int BookmarkId { get; set; } // FK
 
         public virtual Bookmark Bookmark { get; set; }

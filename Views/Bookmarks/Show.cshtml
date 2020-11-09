@@ -3,26 +3,125 @@
     ViewBag.Title = "Afisare Bookmark";
 }
 
-<h2>Show</h2>
-
-<h1>@ViewBag.Bookmark.Title</h1>
-<p>@ViewBag.Bookmark.Description</p>
-<p>@ViewBag.Bookmark.Content</p>
 <br />
-
-@*<a href="/Students/Edit/@ViewBag.Bookmark.BookmarkId">    //cand o sa avem si edit
-        Modifica
-        bookmark
-    </a>*@
-
-@*<form method="post"
-          action="/Bookmarks/Delete/@ViewBag.Bookmark.BookmarkId">  //cand o sa avem si delete
-        @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button type="submit">Sterge bookmarkul</button>
-    </form>*@
-
-<hr />
-
-<a href="/Bookmarks/Edit/@ViewBag.bookmark.BookmarkId">Editeaza bookmark</a>
+<a href="/Bookmarks/Index">Inapoi la albume</a>
 <br />
-<a href="/Bookmarks/Index">Inapoi la lista de bookmarks</a>
+<a class="btn btn-info" href="/Bookmarks/New">Adauga bookmark</a>
+<br />
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">@ViewBag.Bookmark.Title</div>
+    <div class="panel-body">
+        Continut articol: <strong>@ViewBag.Bookmark.Content</strong>
+        <br />
+        <span class="label label-success">@ViewBag.Bookmark.Date</span>
+        <br />
+        Rating: <strong>@ViewBag.Bookmark.Rating</strong>
+        <br />
+        Descriere: <strong>@ViewBag.Bookmark.Description</strong>
+        <br />
+        <i class="glyphicon glyphicon-globe"></i> @ViewBag.Album.AlbumTitle
+        <br />
+        <hr>
+        <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">Modifica bookmark</a>
+        <form method="post" action="/Bookmarks/Delete/@ViewBag.Bookmark.BookmarkId">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
+        </form>
+    </div>
+</div>
+
+
+<br />
+@foreach (var comm in ViewBag.Bookmark.Comments)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div>
+                    <p>@comm.Content</p>
+                    <small class="pull-right">@comm.Date</small>
+                </div>
+                <div style="display: inline-block; float : left; margin-right: 15px">
+                    <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comm.CommentId"></a>
+                </div>
+                <div style="display: inline-block; float : left">
+                    <form method="post" action="/Comments/Delete/@comm.CommentId">
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <hr />
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="panel">
+                <form method="post" action="/Comments/New">
+                    <div class="panel-body">
+                        <input type="hidden" name="BookmarkId" value="@ViewBag.Bookmark.BookmarkId" />
+                        <label>Continut comentariu</label>
+                        <br />
+                        <textarea class="form-control" name="Content"></textarea>
+                        <br />
+                        <button class="btn btn-success " type="submit">Adauga comentariu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Show</h2>
+
+    <h1>@ViewBag.Bookmark.Title</h1>
+    <p>@ViewBag.Bookmark.Description</p>
+    <p>@ViewBag.Bookmark.Content</p>
+    <br />
+
+    <form method="post"
+              action="/Bookmarks/Delete/@ViewBag.Bookmark.BookmarkId">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button type="submit">Sterge bookmarkul</button>
+    </form>
+
+    <hr />
+
+    <a href="/Bookmarks/Edit/@ViewBag.bookmark.BookmarkId">Editeaza bookmark</a>
+    <br />
+    <a href="/Bookmarks/Index">Inapoi la lista de bookmarks</a>*@
