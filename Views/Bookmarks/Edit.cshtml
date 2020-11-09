@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Bookmark</h2>
+
+<form method="post" action="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <label>Titlu</label>
+    <br />
+    <input type="text" name="Title" value="@ViewBag.Bookmark.Title" />
+    <br /><br />
+    <label>Descriere</label>
+    <br />
+    <input type="text" name="Description" value="@ViewBag.Bookmark.Description" />
+    <br /><br />
+    <label>Content</label>
+    <br />
+    <input type="text" name="Content" value="@ViewBag.Bookmark.Content" />
+    <br />
+    <button type="submit">Modifica bookmark-ul</button>
+</form>
+
