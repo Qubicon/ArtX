@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Adaugare bookmark</h2>
+
+<form method="post" action="/Bookmarks/New">
+    <label> Titlu bookmark</label>
+    <input type="text" name="Title" />
+    <br />
+
+    <label> Continut bookmark</label>
+    <input type="text" name="Content" />
+    <br />
+
+    <input type="hidden" name="Date" value="@DateTime.Now" />
+    <br />
+
+    <label> Descriere</label>
+    <input type="text" name="Description" />
+
+    <label> Rating</label>
+    <input type="number" name="Rating" />
+
+    <label> Selectati albumul</label>
+    <select name="AlbumId">
+        @foreach (var album in ViewBag.Albums)
+        {
+            <option value="@album.AlbumId">@album.AlbumTitle</option>
+        }
+    </select>
+    <br />
+    <button type="submit">Adauga bookmark</button>
+
+</form>
+
