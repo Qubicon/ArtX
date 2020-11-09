@@ -1,29 +1,19 @@
-﻿using System;
+﻿using ArtX.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-<<<<<<< Updated upstream
-=======
-using ArtX.Models;
->>>>>>> Stashed changes
+using static ArtX.Models.Bookmark;
 
 namespace ArtX.Controllers
 {
     public class BookmarksController : Controller
     {
-<<<<<<< Updated upstream
-=======
         private Models.AppContext db = new Models.AppContext();
->>>>>>> Stashed changes
-
         // GET: Bookmarks
         public ActionResult Index()
         {
-<<<<<<< Updated upstream
-            return View();
-        }
-=======
             var bookmarks = db.Bookmarks.Include("Album");
             ViewBag.Bookmarks = bookmarks;
             return View();
@@ -63,8 +53,5 @@ namespace ArtX.Controllers
                 return View();
             }
         }
-
-
->>>>>>> Stashed changes
     }
 }

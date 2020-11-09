@@ -13,10 +13,8 @@ namespace ArtX.Models
         [Required]
         public string CommentContent { get; set; }
 
-
         public int UserId { get; set; } // FK
         public int BookmarkId { get; set; } // FK
-
 
         public virtual Bookmark Bookmark { get; set; }
     }

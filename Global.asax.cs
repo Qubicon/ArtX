@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,7 +14,8 @@ namespace ArtX
     {
         protected void Application_Start()
         {
-            // Database.SetInitializer<AppContext>(new DropCreateDatabaseIfModelChanges<AppContext>());
+            // Database.SetInitializer<BookmarkDBContext>(new DropCreateDatabaseIfModelChanges<BookmarkDBContext>());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

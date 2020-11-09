@@ -18,7 +18,7 @@ namespace ArtX.Models
         // public int UserId { get; set; } // FK
 
 
-        public virtual ICollection<Bookmark> Bookmarks {get; set;}
+        public virtual ICollection<Bookmark> Bookmarks { get; set; }
 
     }
 }
