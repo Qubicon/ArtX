@@ -11,15 +11,18 @@
 <br />
 
 @*<a href="/Students/Edit/@ViewBag.Bookmark.BookmarkId">    //cand o sa avem si edit
-    Modifica
-    bookmark
-</a>*@
+        Modifica
+        bookmark
+    </a>*@
 
 @*<form method="post"
-      action="/Bookmarks/Delete/@ViewBag.Bookmark.BookmarkId">  //cand o sa avem si delete
-    @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button type="submit">Sterge bookmarkul</button>
-</form>*@
+          action="/Bookmarks/Delete/@ViewBag.Bookmark.BookmarkId">  //cand o sa avem si delete
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button type="submit">Sterge bookmarkul</button>
+    </form>*@
 
 <hr />
+
+<a href="/Bookmarks/Edit/@ViewBag.bookmark.BookmarkId">Editeaza bookmark</a>
+<br />
 <a href="/Bookmarks/Index">Inapoi la lista de bookmarks</a>
