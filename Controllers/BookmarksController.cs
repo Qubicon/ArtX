@@ -22,7 +22,9 @@ namespace ArtX.Controllers
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
             ViewBag.Bookmark = bookmark;
-            ViewBag.Album = bookmark.Album;
+
+            if (bookmark.Album is not null)
+                ViewBag.Album = bookmark.Album; 
 
             return View();
 
