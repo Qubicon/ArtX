@@ -6,6 +6,7 @@
 
 <h2>Afisare albume</h2>
 
+@*cand adaugam users, aici o sa le afisam doar pe cele cu id ul userului. Momentan le afisam pe toate cele existente*@
 @foreach (var album in ViewBag.Albums)
 {
     <div class="panel panel-default">
@@ -22,6 +23,5 @@
 }
 
 <br />
-<br />
-<a href="/Abums/New">Adauga album</a>
+<a href="/Albums/New">Adauga album</a>
 <br />

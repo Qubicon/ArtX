@@ -3,5 +3,17 @@
     ViewBag.Title = "New";
 }
 
-<h2>New</h2>
+<h2>New album</h2>
 
+<form method="post" action="/Albums/New">
+    <label> Titlu album</label>
+    <input type="text" name="AlbumTitle" />
+    <br />
+    <button type="submit">Adauga album</button>
+
+</form>
+
+<br />
+<br />
+<a href="/Bookmarks/Index">Lista de bookmark-uri</a><br />
+<a href="/Albums/Index">Inapoi la albume</a>
