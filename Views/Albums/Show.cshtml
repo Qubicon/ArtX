@@ -10,5 +10,14 @@
 <br />
 @foreach (ArtX.Models.Bookmark bookmark in ViewBag.Album.Bookmarks)
 {
-    @Html.Partial("BookmarkInfo", bookmark)
+
+    <div class="panel panel-default">
+        @Html.Partial("BookmarkInfo", bookmark)
+        <br />
+
+        <div align="center"><a class="btn-info col-xs-pull-5" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
+        <br />
+         <br />
+    </div>
+
 }
