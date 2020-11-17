@@ -196,6 +196,7 @@
     <Content Include="Views\Albums\Show.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
     <Content Include="Views\Albums\New.cshtml" />
+    <Content Include="Views\Shared\BookmarkInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011090433376_Initial.resx">

@@ -1,0 +1,21 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">@Model.Title</div>
+    <div class="panel-body">
+        Continut articol: <strong>@Model.Content</strong>
+        <br />
+        <span class="label label-success">@Model.Date</span>
+        <br />
+        Rating: <strong>@Model.Rating</strong>
+        <br />
+        Descriere: <strong>@Model.Description</strong>
+        <br />
+        <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
+        <br />
+        <hr>
+        <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@Model.BookmarkId">Modifica bookmark</a>
+        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
+        </form>
+    </div>
+</div>

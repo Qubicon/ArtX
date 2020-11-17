@@ -7,31 +7,8 @@
     <div class="panel-heading">@ViewBag.Album.AlbumTitle</div>
 </div>
 
-
-
 <br />
-@foreach (var bookmark in ViewBag.Album.Bookmarks)
+@foreach (ArtX.Models.Bookmark bookmark in ViewBag.Album.Bookmarks)
 {
-    @*Toata bucata asta de aici este folosita si in show ul pt Bookmarks. As face un shared pt ea.*@
-    <div class="panel panel-default">
-        <div class="panel-heading">@bookmark.Title</div>
-        <div class="panel-body">
-            Continut articol: <strong>@bookmark.Content</strong>
-            <br />
-            <span class="label label-success">@bookmark.Date</span>
-            <br />
-            Rating: <strong>@bookmark.Rating</strong>
-            <br />
-            Descriere: <strong>@bookmark.Description</strong>
-            <br />
-            <i class="glyphicon glyphicon-globe"></i> @bookmark.Album.AlbumTitle
-            <br />
-            <hr>
-            <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@bookmark.BookmarkId">Modifica bookmark</a>
-            <form method="post" action="/Bookmarks/Delete/@bookmark.BookmarkId">
-                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
-            </form>
-        </div>
-    </div>
+    @Html.Partial("BookmarkInfo", bookmark)
 }

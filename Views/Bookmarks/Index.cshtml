@@ -7,22 +7,17 @@
 
 @foreach (var bookmark in ViewBag.Bookmarks)
 {
-    <h2>@bookmark.Title</h2>
-    <p>@bookmark.Content</p>
-    <p>@bookmark.Description</p>
-    <p>@bookmark.Date</p>
-    <p>@bookmark.Rating</p>
-    <p>@bookmark.Album.AlbumTitle</p>
+    <div class="panel panel-default">
+    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark)
     <br />
-    <a href="/Bookmarks/Show/@bookmark.BookmarkId">Afisare bookmark</a>
-    <br />
-    <a href="/Bookmarks/Edit/@bookmark.BookmarkId">Editeaza bookmark</a>
+
+    <div align="center"><a class="btn-info col-xs-pull-5" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
     <br />
     <br />
-    <br />
+    </div>
 }
 
-<a href="/Albums/Index/">Afisare albume</a>
-<br />
 <a href="/Bookmarks/New">Adauga bookmark</a>
+<br />
+<a href="/Albums/Index/">Afisare albume</a>
 <br />
