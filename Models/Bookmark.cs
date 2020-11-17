@@ -23,7 +23,9 @@ namespace ArtX.Models
         public int AlbumId { get; set; } // FK
 
 
-        public virtual Album Album { get; set; }
+        public virtual Album Album { get; set; }    //De tinut minte: pe asta va trebui sa il facem tot o lista. Un bookmark poate fi regasit in mai multe albume
+       // public virtual ICollection<Album> Albums { get; set; }
+
         public virtual ICollection<Comment> Comments { get; set; }
 
     }
