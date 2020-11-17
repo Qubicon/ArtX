@@ -9,15 +9,22 @@
 @*cand adaugam users, aici o sa le afisam doar pe cele cu id ul userului. Momentan le afisam pe toate cele existente*@
 @foreach (var album in ViewBag.Albums)
 {
-    <div class="panel panel-default">
-        <div class="panel-heading">@album.AlbumTitle</div>
+<div class="panel panel-default">
+    <div class="panel-heading">@album.AlbumTitle</div>
 
-        <br />
-        <a href="/Albums/Show/@album.AlbumId">Deschide albumul</a>
-        @*  <br />
-            <a href="/Albums/Edit/@album.AlbumId">Editeaza albumul</a>
-            <br />*@
-    </div>
+    <br />
+    <a href="/Albums/Show/@album.AlbumId">Deschide albumul</a>
+    
+    @using (Html.BeginForm(actionName: "Delete", controllerName: "Albums", method: FormMethod.Post, routeValues: new { id = @album.AlbumId }))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-danger pull-right" type="submit">Sterge albumul</button>
+    }
+
+    @*  <br />
+        <a href="/Albums/Edit/@album.AlbumId">Editeaza albumul</a>
+        <br />*@
+</div>
     <br />
     <br />
 }
