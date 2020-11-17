@@ -195,6 +195,7 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Albums\Show.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Albums\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011090433376_Initial.resx">

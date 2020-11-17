@@ -28,5 +28,6 @@ namespace ArtX.Controllers
             return View();
 
         }
+
     }
 }
