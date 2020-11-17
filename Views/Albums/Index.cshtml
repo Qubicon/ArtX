@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Afisare albume</h2>
+
+@*cand adaugam users, aici o sa le afisam doar pe cele cu id ul userului. Momentan le afisam pe toate cele existente*@
+@foreach (var album in ViewBag.Albums)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@album.AlbumTitle</div>
+
+        <br />
+        <a href="/Albums/Show/@album.AlbumId">Deschide albumul</a>
+        @*  <br />
+            <a href="/Albums/Edit/@album.AlbumId">Editeaza albumul</a>
+            <br />*@
+    </div>
+    <br />
+    <br />
+}
+
+<br />
+<a href="/Albums/New">Adauga album</a>
+<br />

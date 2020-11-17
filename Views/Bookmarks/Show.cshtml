@@ -4,32 +4,11 @@
 }
 
 <br />
-<a href="/Bookmarks/Index">Inapoi la albume</a>
-<br />
-<a class="btn btn-info" href="/Bookmarks/New">Adauga bookmark</a>
-<br />
-<br />
-<div class="panel panel-default">
-    <div class="panel-heading">@ViewBag.Bookmark.Title</div>
-    <div class="panel-body">
-        Continut articol: <strong>@ViewBag.Bookmark.Content</strong>
-        <br />
-        <span class="label label-success">@ViewBag.Bookmark.Date</span>
-        <br />
-        Rating: <strong>@ViewBag.Bookmark.Rating</strong>
-        <br />
-        Descriere: <strong>@ViewBag.Bookmark.Description</strong>
-        <br />
-        <i class="glyphicon glyphicon-globe"></i> @ViewBag.Album.AlbumTitle
-        <br />
-        <hr>
-        <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">Modifica bookmark</a>
-        <form method="post" action="/Bookmarks/Delete/@ViewBag.Bookmark.BookmarkId">
-            @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
-        </form>
-    </div>
-</div>
+<a href="/Bookmarks/Index">Inapoi la bookmarks</a>  @*de ce inapoi la albume? inapoi la bookmarks I guess? O sa avem un loc in care o sa putem vedea toate bookmarksurile existente ( indexul de acum)*@
+@*<br /><a href="/Albums/AlbumId?">Inapoi la album</a> sau o sa mai putem ajunge la un bookmark plecand dintr un singur album*@
+
+
+@Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)  ViewBag.Bookmark)
 
 
 <br />

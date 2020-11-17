@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@ViewBag.Album.AlbumTitle</div>
+</div>
+
+<br />
+@foreach (ArtX.Models.Bookmark bookmark in ViewBag.Album.Bookmarks)
+{
+    @Html.Partial("BookmarkInfo", bookmark)
+}
