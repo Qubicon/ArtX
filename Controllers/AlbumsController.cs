@@ -53,5 +53,15 @@ namespace ArtX.Controllers
             }
         }
 
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            Album album = db.Albums.Find(id);
+            db.Albums.Remove(album);
+            db.SaveChanges();
+            TempData["message"] = "Albumul a fost sters";
+            return RedirectToAction("Index");
+        }
+
     }
 }
