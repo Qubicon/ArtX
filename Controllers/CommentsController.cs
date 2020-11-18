@@ -9,7 +9,7 @@ namespace ArtX.Controllers
 {
     public class CommentsController : Controller
     {
-        private ArtX.Models.AppContext db = new ArtX.Models.AppContext();
+        private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
         // GET: Comments
         public ActionResult Index()
         {

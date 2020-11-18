@@ -6,9 +6,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">@*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,14 +17,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ArtX", "Index", "Bookmarks", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
+                  
+                   @*  @if (UserIsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
+                        <li>@Html.ActionLink("PosteazaBookmark", "New", "Bookmarks")</li>
+                    }*@
+
+                    @if ((User.IsInRole("Editor")) || (User.IsInRole("Admin")))
+                    {
+                    
+                        <li>@Html.ActionLink("New Bookmark", "New", "Bookmarks")</li>
+                        <li>@Html.ActionLink("New Album", "New", "Albums")</li>
+                    }
+
+
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -31,7 +48,7 @@
         @RenderBody()
         <hr />
         <footer>
-          @*  <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 

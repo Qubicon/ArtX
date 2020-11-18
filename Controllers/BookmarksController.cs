@@ -1,4 +1,5 @@
 ﻿using ArtX.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -7,41 +8,53 @@ namespace ArtX.Controllers
 {
     public class BookmarksController : Controller
     {
-        private ArtX.Models.AppContext db = new ArtX.Models.AppContext();
+        private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
 
         // GET: Bookmarks
+        [Authorize(Roles = "User,Admin,Editor")]
         public ActionResult Index()
         {
-            var bookmarks = db.Bookmarks.Include("Album");
+            var bookmarks = db.Bookmarks.Include("Album").Include("User");
             ViewBag.Bookmarks = bookmarks;
             return View();
         }
 
         // GET: Show
+        [Authorize (Roles = "User,Admin,Editor")]
         public ActionResult Show(int id)
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
             ViewBag.Bookmark = bookmark;
 
             if (bookmark.Album is not null)
-                ViewBag.Album = bookmark.Album; 
+            {
+                ViewBag.Album = bookmark.Album;
+            }
 
             return View();
 
         }
 
         // GET: New
+        [Authorize(Roles = "Admin,Editor")]
         public ActionResult New()
         {
+            Bookmark bookmark = new Bookmark();
+            bookmark.UserId = User.Identity.GetUserId();
+
             var albums = from alb in db.Albums
                          select alb;
             ViewBag.Albums = albums;
-            return View();
+
+            return View(bookmark);
         }
 
+        [Authorize(Roles = "Admin,Editor")]
         [HttpPost]
         public ActionResult New(Bookmark bookmark)
         {
+            bookmark.UserId = User.Identity.GetUserId();
+
             try
             {
                 db.Bookmarks.Add(bookmark);
@@ -55,6 +68,7 @@ namespace ArtX.Controllers
         }
 
         //GET: Edit
+        [Authorize(Roles = "Admin,Editor")]
         public ActionResult Edit(int id)
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
@@ -62,6 +76,7 @@ namespace ArtX.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin,Editor")]
         [HttpPut]
         public ActionResult Edit(int id, Bookmark requestBookmark)
         {
@@ -93,6 +108,7 @@ namespace ArtX.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Editor")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {

@@ -17,5 +17,10 @@
             @Html.HttpMethodOverride(HttpVerbs.Delete)
             <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
         </form>
+
+
+        <i class="glyphicon glyphicon-user"></i> <i>Bookmark postat de</i>
+        <strong> @Model.User.UserName </strong>
+
     </div>
 </div>

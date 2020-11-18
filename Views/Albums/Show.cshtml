@@ -4,7 +4,7 @@
 }
 
 <div class="panel panel-default">
-    <div class="panel-heading" align="center"><h2>@ViewBag.Album.AlbumTitle</h2></div>
+    <div class="panel-heading">@ViewBag.Album.AlbumTitle</div>
 </div>
 
 <br />
@@ -17,13 +17,7 @@
 
         <div align="center"><a class="btn-info col-xs-pull-5" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
         <br />
-        <br />
+         <br />
     </div>
 
-}
-
-@using (Html.BeginForm(actionName: "Delete", controllerName: "Albums", method: FormMethod.Post, routeValues: new { id = @ViewBag.Album.AlbumId }))
-{
-    @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button class="btn btn-danger pull-right" type="submit">Sterge albumul</button>
 }

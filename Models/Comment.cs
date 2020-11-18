@@ -19,5 +19,11 @@ namespace ArtX.Models
         public int BookmarkId { get; set; } // FK
 
         public virtual Bookmark Bookmark { get; set; }
+
+
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
     }
 }
