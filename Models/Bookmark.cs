@@ -20,8 +20,14 @@ namespace ArtX.Models
         public DateTime Date { get; set; }
 
 
-        public int AlbumId { get; set; } // FK
 
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
+
+
+        public int AlbumId { get; set; } // FK
 
         public virtual Album Album { get; set; }    //De tinut minte: pe asta va trebui sa il facem tot o lista. Un bookmark poate fi regasit in mai multe albume
        // public virtual ICollection<Album> Albums { get; set; }
