@@ -1,23 +1,26 @@
-﻿@{
-    ViewBag.Title = "Edit";
+﻿@model ArtX.Models.Bookmark
+
+@{
+    ViewBag.Titlu = "Edit";
 }
 
 <h2>Edit Bookmark</h2>
 
 <form method="post" action="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Titlu</label>
-    <br />
-    <input type="text" name="Title" value="@ViewBag.Bookmark.Title" />
-    <br /><br />
-    <label>Descriere</label>
-    <br />
-    <input type="text" name="Description" value="@ViewBag.Bookmark.Description" />
-    <br /><br />
-    <label>Content</label>
-    <br />
-    <input type="text" name="Content" value="@ViewBag.Bookmark.Content" />
-    <br />
-    <button type="submit">Modifica bookmark-ul</button>
-</form>
 
+    @Html.Label("Title", "Titlu bookmark")
+    <br />
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+    <br />
+
+    @Html.Label("Description", "Descriere bookmark")
+    <br />
+    @Html.TextBox("Description", null, new { @class = "form-control" })
+
+    @Html.Label("Content", "Continut bookmark")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-sm btn-success" type="submit">Modifica bookmark-ul</button>
+</form>

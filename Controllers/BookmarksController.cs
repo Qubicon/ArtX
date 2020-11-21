@@ -106,7 +106,7 @@ namespace ArtX.Controllers
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
             ViewBag.Bookmark = bookmark;
-            return View();
+            return View(bookmark);
         }
 
         [Authorize(Roles = "Admin,Editor")]
@@ -132,6 +132,7 @@ namespace ArtX.Controllers
                     bookmark.Content = requestBookmark.Content;
 
                     db.SaveChanges();
+                    TempData["message"] = "Bookmark-ul a fost modificat!";
                 }
                 return RedirectToAction("Index");
             }
@@ -148,6 +149,7 @@ namespace ArtX.Controllers
             Bookmark bookmark = db.Bookmarks.Find(id);
             db.Bookmarks.Remove(bookmark);
             db.SaveChanges();
+            TempData["message"] = "Bookmark-ul a fost sters!";
             return RedirectToAction("Index");
         }
 
