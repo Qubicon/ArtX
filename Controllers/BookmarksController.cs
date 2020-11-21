@@ -1,6 +1,7 @@
 ﻿using ArtX.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -16,6 +17,10 @@ namespace ArtX.Controllers
         {
             var bookmarks = db.Bookmarks.Include("Album").Include("User");
             ViewBag.Bookmarks = bookmarks;
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+            }
             return View();
         }
 
@@ -40,6 +45,9 @@ namespace ArtX.Controllers
         public ActionResult New()
         {
             Bookmark bookmark = new Bookmark();
+            bookmark.Alb = GetAllAlbums();
+
+
             bookmark.UserId = User.Identity.GetUserId();
 
             var albums = from alb in db.Albums
@@ -47,6 +55,30 @@ namespace ArtX.Controllers
             ViewBag.Albums = albums;
 
             return View(bookmark);
+        }
+
+        [NonAction]
+        public IEnumerable<SelectListItem> GetAllAlbums()
+        {
+            {
+                // generam o lista goala
+                var selectList = new List<SelectListItem>();
+                // extragem toate albumele din baza de date
+                var albums = from alb in db.Albums
+                                 select alb;
+                // iteram prin albume
+                foreach (var album in albums)
+                {
+                    // adaugam in lista elementele necesare pentru dropdown
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = album.AlbumId.ToString(),
+                        Text = album.AlbumTitle.ToString()
+                    });
+                }
+                // returnam lista de albume
+                return selectList;
+            }
         }
 
         [Authorize(Roles = "Admin,Editor")]
@@ -59,11 +91,12 @@ namespace ArtX.Controllers
             {
                 db.Bookmarks.Add(bookmark);
                 db.SaveChanges();
+                TempData["message"] = "Bookmark-ul a fost adaugat!";
                 return RedirectToAction("Index");
             }
             catch (Exception e)
             {
-                return View();
+                return View(bookmark);
             }
         }
 

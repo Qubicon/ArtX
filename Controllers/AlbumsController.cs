@@ -19,6 +19,10 @@ namespace ArtX.Controllers
         {
             var albums = db.Albums;
             ViewBag.Albums = albums;
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+            }
             return View();
         }
 
@@ -35,10 +39,11 @@ namespace ArtX.Controllers
         [Authorize(Roles = "Admin,Editor")]
         public ActionResult New()
         {
+            Album album = new Album();
         /*    var bookmarks = from b in db.Bookmarks    //daca vom face sa si selecteze bookmarksuri inca de la creearea albumului, dar eu zic ca nu e nevoie
                          select b;
             ViewBag.Bookmarks = bookmarks;*/
-            return View();
+            return View(album);
         }
 
         
@@ -50,6 +55,7 @@ namespace ArtX.Controllers
             {
                 db.Albums.Add(album);
                 db.SaveChanges();
+                TempData["message"] = "Albumul a fost adaugat!";
                 return RedirectToAction("Index");
             }
             catch (Exception e)

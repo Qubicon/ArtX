@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArtX.Models
 {
@@ -33,6 +34,8 @@ namespace ArtX.Models
        // public virtual ICollection<Album> Albums { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public IEnumerable<SelectListItem> Alb { get; set; }
 
     }
 }
