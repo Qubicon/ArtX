@@ -1,37 +1,43 @@
-﻿
+﻿@model ArtX.Models.Bookmark
+
 @{
-    ViewBag.Title = "New";
+    ViewBag.Titlu = "New";
 }
 
 <h2>Adaugare bookmark</h2>
 
 <form method="post" action="/Bookmarks/New">
-    <label> Titlu bookmark</label>
-    <input type="text" name="Title" />
+
+
+    @Html.Label("Title", "Titlu bookmark")
+    <br />
+    @Html.TextBox("Title", null, new { @class = "form-control"})
     <br />
 
-    <label> Continut bookmark</label>
-    <input type="text" name="Content" />
+    @Html.Label("Content", "Continut bookmark")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control" })
     <br />
 
     <input type="hidden" name="Date" value="@DateTime.Now" />
+    @*Pe asta nu am reusit s-o modifica inca (irelevant).*@
+
+    @Html.Label("Description", "Descriere bookmark")
+    <br />
+    @Html.TextBox("Description", null, new { @class = "form-control" })
     <br />
 
-    <label> Descriere</label>
-    <input type="text" name="Description" />
-
-    <label> Rating</label>
-    <input type="number" name="Rating" />
+    @Html.Label("Rating", "Rating bookmark")
+    <br />
+    @Html.Editor("Rating", null, new { @class = "form-control" })
+    <br /><br />
 
     <label> Selectati albumul</label>
-    <select name="AlbumId">
-        @foreach (var album in ViewBag.Albums)
-        {
-            <option value="@album.AlbumId">@album.AlbumTitle</option>
-        }
-    </select>
+    @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Alb, "Value", "Text"),
+    "Selectati albumul", new { @class = "form-control" })
+
     <br />
-    <button type="submit">Adauga bookmark</button>
+    <button class="btn btn-sm btn-success" type="submit">Adauga bookmark</button>
 
 </form>
 
