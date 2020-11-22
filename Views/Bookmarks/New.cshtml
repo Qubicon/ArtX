@@ -1,26 +1,24 @@
 ﻿@model ArtX.Models.Bookmark
 
-@{
-    ViewBag.Titlu = "New";
-}
 
 <h2>Adaugare bookmark</h2>
 
-<form method="post" action="/Bookmarks/New">
+@using (Html.BeginForm(actionName: "New", controllerName: "Bookmarks"))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-
-    @Html.Label("Title", "Titlu bookmark")
+    @Html.Label("Title", "Titlu Bookmark")
     <br />
-    @Html.TextBox("Title", null, new { @class = "form-control"})
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
     <br />
 
-    @Html.Label("Content", "Continut bookmark")
+    @Html.Label("Content", "Continut Bookmark")
     <br />
     @Html.TextArea("Content", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
     <br />
-
-    <input type="hidden" name="Date" value="@DateTime.Now" />
-    @*Pe asta nu am reusit s-o modifica inca (irelevant).*@
 
     @Html.Label("Description", "Descriere bookmark")
     <br />
@@ -30,17 +28,20 @@
     @Html.Label("Rating", "Rating bookmark")
     <br />
     @Html.Editor("Rating", null, new { @class = "form-control" })
-    <br /><br />
-
-    <label> Selectati albumul</label>
-    @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Alb, "Value", "Text"),
-    "Selectati albumul", new { @class = "form-control" })
-
     <br />
+    <br />
+
+    <label>Selectati albumul</label>
+    @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Alb, "Value", "Text"),
+    "Selectati categoria", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+
     <button class="btn btn-sm btn-success" type="submit">Adauga bookmark</button>
 
-</form>
+}
 
-<br />
-<a href="/Bookmarks/Index">Inapoi la lista de bookmarks</a>
+
 
