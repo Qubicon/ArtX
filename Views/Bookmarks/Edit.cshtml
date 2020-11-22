@@ -1,26 +1,58 @@
 ﻿@model ArtX.Models.Bookmark
 
-@{
-    ViewBag.Titlu = "Edit";
-}
+<h2>Editare bookmark</h2>
 
-<h2>Edit Bookmark</h2>
-
-<form method="post" action="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Bookmarks"))
+{
     @Html.HttpMethodOverride(HttpVerbs.Put)
 
-    @Html.Label("Title", "Titlu bookmark")
+    @Html.HiddenFor(m => m.BookmarkId)
     <br />
-    @Html.TextBox("Title", null, new { @class = "form-control" })
+    @Html.Label("Title", "Titlu Bookmark")
+    <br />
+    @Html.Editor("Title", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
     <br />
 
-    @Html.Label("Description", "Descriere bookmark")
+    @Html.Label("Content", "Continut Bookmark")
     <br />
-    @Html.TextBox("Description", null, new { @class = "form-control" })
+    @Html.EditorFor(m => m.Content, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+    <br />
 
-    @Html.Label("Content", "Continut bookmark")
+    @Html.Label("Description", "Descriere Bookmark")
     <br />
-    @Html.TextArea("Content", null, new { @class = "form-control" })
+    @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
     <br />
-    <button class="btn btn-sm btn-success" type="submit">Modifica bookmark-ul</button>
-</form>
+
+    @Html.HiddenFor(m => m.Date)
+
+    <label>Selectati categoria</label>
+    @Html.DropDownListFor(m => m.AlbumId,
+        new SelectList(Model.Alb, "Value", "Text"),
+        "Selectati albumul", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Modifica bookmark</button>
+}
+
+
+@*<form method="post" action="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+
+        @Html.Label("Title", "Titlu bookmark")
+        <br />
+        @Html.TextBox("Title", null, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Description", "Descriere bookmark")
+        <br />
+        @Html.TextBox("Description", null, new { @class = "form-control" })
+
+        @Html.Label("Content", "Continut bookmark")
+        <br />
+        @Html.TextArea("Content", null, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-sm btn-success" type="submit">Modifica bookmark-ul</button>
+    </form>*@
