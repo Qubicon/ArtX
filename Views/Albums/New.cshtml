@@ -1,15 +1,17 @@
-﻿
+﻿@model ArtX.Models.Album
+
 @{
-    ViewBag.Title = "New";
+    ViewBag.Titlu = "New";
 }
 
 <h2>New album</h2>
 
 <form method="post" action="/Albums/New">
-    <label> Titlu album</label>
-    <input type="text" name="AlbumTitle" />
+    @Html.Label("AlbumTitle", "Titlu album")
     <br />
-    <button type="submit">Adauga album</button>
+    @Html.TextBox("AlbumTitle",null, new { @class="form-control"})
+    <br />
+    <button class="btn btn-sm btn-success" type="submit">Adauga album</button>
 
 </form>
 
