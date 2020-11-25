@@ -31,9 +31,9 @@
     <br />
     <br />
 
-    <label>Selectati albumul</label>
+    <label>Album</label>
     @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Alb, "Value", "Text"),
-    "Selectati categoria", new { @class = "form-control" })
+    "Selectati albumul", new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
     <br />
 

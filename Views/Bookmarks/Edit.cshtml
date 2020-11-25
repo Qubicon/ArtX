@@ -27,7 +27,7 @@
 
     @Html.HiddenFor(m => m.Date)
 
-    <label>Selectati categoria</label>
+    <label>Album</label>
     @Html.DropDownListFor(m => m.AlbumId,
         new SelectList(Model.Alb, "Value", "Text"),
         "Selectati albumul", new { @class = "form-control" })
