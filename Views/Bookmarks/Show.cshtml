@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Afisare Bookmark";
 }
 
@@ -21,6 +20,8 @@
                 <div>
                     <p>@comm.Content</p>
                     <small class="pull-right">@comm.Date</small>
+                    <i class="glyphicon glyphicon-user"></i> <i>Comentariu postat de</i>
+                    <strong> @Model.User.UserName </strong>
                 </div>
                 <div style="display: inline-block; float : left; margin-right: 15px">
                     <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comm.CommentId"></a>
