@@ -1,7 +1,11 @@
 ﻿@model ArtX.Models.Bookmark
 
 <div class="panel panel-default">
-    <div class="panel-heading">@Model.Title</div>
+    <div class="panel-heading">
+        <big>@Model.Title</big>
+        <br />
+        <i class="glyphicon glyphicon-user"></i> <i><small><strong> @Model.User.UserName</small> </strong></i>
+    </div>
     <div class="panel-body">
         Continut articol: <strong>@Model.Content</strong>
         <br />
@@ -20,9 +24,8 @@
             <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
         </form>
 
+        <br />
+        
 
-        <i class="glyphicon glyphicon-user"></i> <i>Bookmark postat de</i>
-        <strong> @Model.User.UserName </strong>
-
-    </div>
+        </div>
 </div>

@@ -1,4 +1,5 @@
 ﻿using ArtX.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace ArtX.Controllers
 
         [HttpPost]
         public ActionResult New(Comment comm)
-        {
+        {   
+            comm.UserId = User.Identity.GetUserId ();
             comm.Date = DateTime.Now;
             try
             {
