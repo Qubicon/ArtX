@@ -14,8 +14,6 @@ namespace ArtX.Models
         public string Content { get; set; }
         public DateTime Date { get; set; }
 
-        // Tine de useri, deci e pentru mai incolo
-        // public int UserId { get; set; } // FK
         public int BookmarkId { get; set; } // FK
 
         public virtual Bookmark Bookmark { get; set; }
