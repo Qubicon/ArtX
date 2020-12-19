@@ -13,17 +13,8 @@ namespace ArtX.Models
         [Required]
         public string AlbumTitle { get; set; }
 
-        // Ce are legatura cu userii vom implementa mai tarziu
-
-        // public int UserId { get; set; } // FK
-
-
-
         public string UserId { get; set; }
-
         public virtual ApplicationUser User { get; set; }
-
-
 
         public virtual ICollection<Bookmark> Bookmarks { get; set; }
 

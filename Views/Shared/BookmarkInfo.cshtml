@@ -1,4 +1,8 @@
-﻿@model ArtX.Models.Bookmark
+﻿
+@{
+    string actualId = this.ViewData.ContainsKey("1") ? this.ViewData["1"].ToString() : string.Empty;
+    string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty;
+}
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -17,15 +21,21 @@
         <br />
         <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
         <br />
-        <hr>
-        <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@Model.BookmarkId">Modifica bookmark</a>
-        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId">
-            @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
-        </form>
 
-        <br />
-        
+        @if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
+        {
+            <hr>
+            <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@Model.BookmarkId">Modifica bookmark</a>
+        }
+        @if (actualId == Model.UserId || isAdmin == "da")
+        {
+            <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId">
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
+            </form>
+        }
+            <br />
+
 
         </div>
 </div>

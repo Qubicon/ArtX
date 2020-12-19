@@ -3,12 +3,10 @@
 }
 
 <br />
-<a href="/Bookmarks/Index">Inapoi la bookmarks</a>  @*de ce inapoi la albume? inapoi la bookmarks I guess? O sa avem un loc in care o sa putem vedea toate bookmarksurile existente ( indexul de acum)*@
+<a href="/Bookmarks/Index">Inapoi la bookmarks</a>
 @*<br /><a href="/Albums/AlbumId?">Inapoi la album</a> sau o sa mai putem ajunge la un bookmark plecand dintr un singur album*@
 
-
-@Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)  ViewBag.Bookmark)
-
+    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark) ViewBag.Bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
 <br />
 @foreach (var comm in ViewBag.Bookmark.Comments)
@@ -21,17 +19,27 @@
                     <p>@comm.Content</p>
                     <small class="pull-right">@comm.Date</small>
                     <i class="glyphicon glyphicon-user"></i> <i>Comentariu postat de</i>
-                    <strong> @Model.User.UserName </strong>
+                    <strong> @comm.User.UserName </strong>
                 </div>
-                <div style="display: inline-block; float : left; margin-right: 15px">
-                    <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comm.CommentId"></a>
-                </div>
-                <div style="display: inline-block; float : left">
-                    <form method="post" action="/Comments/Delete/@comm.CommentId">
-                        @Html.HttpMethodOverride(HttpVerbs.Delete)
-                        <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
-                    </form>
-                </div>
+
+
+
+                @if (ViewBag.userId == comm.UserId || ViewBag.userId == comm.User.UserName)//daca userul actual este cel care a creeat bookmarkul sau cel care a puss comm ul
+                {
+                    <div style="display: inline-block; float : left; margin-right: 15px">
+                        <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comm.CommentId"></a>
+                    </div>
+                }
+
+                @if (ViewBag.userId == comm.UserId || ViewBag.userId == comm.User.UserName || ViewBag.b == "da")
+                {
+                    <div style="display: inline-block; float : left">
+                        <form method="post" action="/Comments/Delete/@comm.CommentId">
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                        </form>
+                    </div>
+                }
             </div>
         </div>
         <div class="col-md-2"></div>
