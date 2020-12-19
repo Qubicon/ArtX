@@ -30,7 +30,7 @@
                         <li>@Html.ActionLink("PosteazaBookmark", "New", "Bookmarks")</li>
                     }*@
 
-                    @if ((User.IsInRole("Editor")) || (User.IsInRole("Admin")))
+                    @if ((User.IsInRole("User")) || (User.IsInRole("Admin")))
                     {
                     
                         <li>@Html.ActionLink("New Bookmark", "New", "Bookmarks")</li>

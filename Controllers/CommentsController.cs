@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ArtX.Controllers
 {
@@ -21,15 +22,19 @@ namespace ArtX.Controllers
         public ActionResult Delete(int id)
         {
             Comment comm = db.Comments.Find(id);
-            db.Comments.Remove(comm);
-            db.SaveChanges();
+            if (User.Identity.GetUserId() == comm.UserId)
+            {
+                db.Comments.Remove(comm);
+                db.SaveChanges();
+            }
+
             return Redirect("/Bookmarks/Show/" + comm.BookmarkId);
         }
 
         [HttpPost]
         public ActionResult New(Comment comm)
         {   
-            comm.UserId = User.Identity.GetUserId ();
+            comm.UserId = User.Identity.GetUserId();
             comm.Date = DateTime.Now;
             try
             {
@@ -49,6 +54,8 @@ namespace ArtX.Controllers
         {
             Comment comm = db.Comments.Find(id);
             ViewBag.Comment = comm;
+            string userId = User.Identity.GetUserId();
+            ViewBag.userId = userId;
             return View();
         }
 

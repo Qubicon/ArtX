@@ -24,7 +24,15 @@ namespace ArtX
             
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            
+
+
+           /* // get
+            var postalCode = Profile.GetPropertyValue("PostalCode") as string;
+
+            // set
+            Profile.SetPropertyValue("PostalCode", "V8K 1B1");
+            Profile.Save();*/
+
             // Se adauga rolurile aplicatiei
             if (!roleManager.RoleExists("Admin"))
             {
@@ -42,18 +50,13 @@ namespace ArtX
                     UserManager.AddToRole(user.Id, "Admin");
                 }
             }
-            if (!roleManager.RoleExists("Editor"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Editor";
-                roleManager.Create(role);
-            }
             if (!roleManager.RoleExists("User"))
             {
                 var role = new IdentityRole();
                 role.Name = "User";
                 roleManager.Create(role);
             }
+
         }
 
     }

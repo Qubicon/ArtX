@@ -12,11 +12,23 @@ namespace ArtX.Controllers
         private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
 
         // GET: Bookmarks
-        [Authorize(Roles = "User,Admin,Editor")]
+        [Authorize(Roles = "User,Admin"), AllowAnonymous]
+
         public ActionResult Index()
         {
-            var bookmarks = db.Bookmarks.Include("Album").Include("User");
+            //bookmarksurile vor fi afisate in ordinea descrescatoare a Ratingurilor:
+            var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
             ViewBag.Bookmarks = bookmarks;
+
+            string userId = User.Identity.GetUserId();
+            ViewBag.userId = userId;
+
+            string b = "nu";
+
+            if (User.IsInRole("Admin"))
+                b = "da";
+
+            ViewBag.b = b;
 
             if (TempData.ContainsKey("message"))
             {
@@ -27,11 +39,24 @@ namespace ArtX.Controllers
         }
 
         // GET: Show
-        [Authorize (Roles = "User,Admin,Editor")]
+        [Authorize (Roles = "User,Admin"), AllowAnonymous]
         public ActionResult Show(int id)
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
             ViewBag.Bookmark = bookmark;
+
+            string userId = User.Identity.GetUserId();
+            ViewBag.userId = userId;
+
+            string userName = User.Identity.GetUserName();
+            ViewBag.userName = userName;
+
+            string b = "nu";
+
+            if (User.IsInRole("Admin"))
+                b = "da";
+
+            ViewBag.b = b;
 
             if (bookmark.Album is not null)
             {
@@ -43,13 +68,11 @@ namespace ArtX.Controllers
         }
 
         // GET: New
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin,User")]
         public ActionResult New()
         {
             Bookmark bookmark = new Bookmark();
             bookmark.Alb = GetAllAlbums();
-
-
             bookmark.UserId = User.Identity.GetUserId();
 
             var albums = from alb in db.Albums
@@ -59,7 +82,7 @@ namespace ArtX.Controllers
             return View(bookmark);
         }
 
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin,User")]
         [HttpPost]
         public ActionResult New(Bookmark bookmark)
         {
@@ -89,16 +112,29 @@ namespace ArtX.Controllers
         }
 
         //GET: Edit
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin,User")]
         public ActionResult Edit(int id)
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
+            /*string g = System.Security.IPrincipal.IIdentity.User.GetUserId();*/
+            string userId = User.Identity.GetUserId();
+            ViewBag.userId = userId;
+            /*if (userId == bookmark.UserId)
+            {
+                b = true;
+            }
+            else
+            {
+                b = false;
+                *//*TempData["message"] = "Acest bookmark nu a fost postat de tine. Nu ai autorizatia de a il modifica!";
+                return RedirectToAction("Index");*//*
+            }*/
             ViewBag.Bookmark = bookmark;
             bookmark.Alb = GetAllAlbums();
             return View(bookmark);
         }
 
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin,User")]
         [HttpPut]
         public ActionResult Edit(int id, Bookmark requestBookmark)
         {
@@ -140,7 +176,7 @@ namespace ArtX.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin,User")]
         [HttpDelete]
         public ActionResult Delete(int id)
         {
@@ -150,6 +186,56 @@ namespace ArtX.Controllers
             TempData["message"] = "Bookmark-ul a fost sters!";
             return RedirectToAction("Index");
         }
+
+
+      /*  aici o sa l modific sa fac si Save:*/
+      /*  // GET: New
+        [Authorize(Roles = "Admin,User")]
+        public ActionResult New()
+        {
+            Bookmark bookmark = new Bookmark();
+            bookmark.Alb = GetAllAlbums();
+
+
+            bookmark.UserId = User.Identity.GetUserId();
+
+            var albums = from alb in db.Albums
+                         select alb;
+            ViewBag.Albums = albums;
+
+            return View(bookmark);
+        }
+
+        [Authorize(Roles = "Admin,User")]
+        [HttpPost]
+        public ActionResult New(Bookmark bookmark)
+        {
+            bookmark.UserId = User.Identity.GetUserId();
+            bookmark.Date = DateTime.Now;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Bookmarks.Add(bookmark);
+                    db.SaveChanges();
+                    TempData["message"] = "Bookmark-ul a fost adaugat!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    bookmark.Alb = GetAllAlbums();
+                    return View(bookmark);
+                }
+            }
+            catch (Exception e)
+            {
+                bookmark.Alb = GetAllAlbums();
+                return View(bookmark);
+            }
+        }
+*/
+
 
         [NonAction]
         public IEnumerable<SelectListItem> GetAllAlbums()

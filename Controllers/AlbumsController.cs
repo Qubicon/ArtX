@@ -13,7 +13,7 @@ namespace ArtX.Controllers
 
         private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
 
-        [Authorize(Roles = "User,Admin,Editor")]
+        [Authorize(Roles = "User,Admin"), AllowAnonymous]
         // GET: Albums
         public ActionResult Index()
         {
@@ -26,7 +26,7 @@ namespace ArtX.Controllers
             return View();
         }
 
-        [Authorize(Roles = "User,Admin,Editor")]
+        [Authorize(Roles = "User,Admin"), AllowAnonymous]
         public ActionResult Show(int id)
         {
             Album album = db.Albums.Find(id);
@@ -36,19 +36,16 @@ namespace ArtX.Controllers
 
         }
 
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New()
         {
             Album album = new Album();
-        /*    var bookmarks = from b in db.Bookmarks    //daca vom face sa si selecteze bookmarksuri inca de la creearea albumului, dar eu zic ca nu e nevoie
-                         select b;
-            ViewBag.Bookmarks = bookmarks;*/
             return View(album);
         }
 
         
         [HttpPost]
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult New(Album album)
         {
             try
@@ -66,7 +63,7 @@ namespace ArtX.Controllers
 
 
         [HttpDelete]
-        [Authorize(Roles = "Admin,Editor")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Delete(int id)
         {
             Album album = db.Albums.Find(id);
