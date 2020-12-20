@@ -20,14 +20,17 @@ namespace ArtX.Controllers
             var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
             ViewBag.Bookmarks = bookmarks;
 
-            string userId = User.Identity.GetUserId();
-            ViewBag.userId = userId;
+            string userId = "-1";
 
             string b = "nu";
 
-            if (User.IsInRole("Admin"))
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                userId = User.Identity.GetUserId();
+
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 b = "da";
 
+            ViewBag.userId = userId;
             ViewBag.b = b;
 
             if (TempData.ContainsKey("message"))
@@ -45,17 +48,20 @@ namespace ArtX.Controllers
             Bookmark bookmark = db.Bookmarks.Find(id);
             ViewBag.Bookmark = bookmark;
 
-            string userId = User.Identity.GetUserId();
-            ViewBag.userId = userId;
-
             string userName = User.Identity.GetUserName();
             ViewBag.userName = userName;
 
+            string userId = "-1";
+
             string b = "nu";
 
-            if (User.IsInRole("Admin"))
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                userId = User.Identity.GetUserId();
+
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 b = "da";
 
+            ViewBag.userId = userId;
             ViewBag.b = b;
 
             if (bookmark.Album is not null)
