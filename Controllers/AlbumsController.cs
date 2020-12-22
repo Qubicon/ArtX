@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArtX.Models;
 using System.Linq;
+using Microsoft.AspNet.Identity;
 
 namespace ArtX.Controllers
 {
@@ -31,6 +32,18 @@ namespace ArtX.Controllers
         {
             Album album = db.Albums.Find(id);
             ViewBag.Album = album;
+            string userId = "-1";
+
+            string b = "nu";
+
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                userId = User.Identity.GetUserId();
+
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                b = "da";
+
+            ViewBag.userId = userId;
+            ViewBag.b = b;
 
             return View();
 

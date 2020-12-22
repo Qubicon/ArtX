@@ -164,8 +164,11 @@ namespace ArtX.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    /*Login(LoginViewModel model, string returnUrl)*/
+                    string url = "loginLink";
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", model);
+                    /* return RedirectToAction("Index", "Home");*/
                 }
                 AddErrors(result);
             }

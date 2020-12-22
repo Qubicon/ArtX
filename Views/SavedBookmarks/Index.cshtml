@@ -8,8 +8,16 @@
 @foreach (var bookmark in ViewBag.myBookmarks)
 {
 <div class="panel panel-default">
-   <a class="btn btn-primary pull-right glyphicon glyphicon-remove" position ="absolute" href="/SavedBookmarks/Remove/@bookmark.BookmarkId">Remove </a>
+    <a class="btn btn-primary pull-right glyphicon glyphicon-remove" position="absolute" href="/SavedBookmarks/Remove/@bookmark.BookmarkId">Remove </a>
     @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+
+    <div align="center" style="background-color:#1f1f1f; ">
+        <a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId"
+           style="color: #272626;
+                background-color: #eb3b5a;
+                border-color: #272626;
+                font-size: 14px; margin-bottom:3px;">View  <i class="glyphicon glyphicon-eye-open"></i></a>
+    </div>
 
 </div>
 }
