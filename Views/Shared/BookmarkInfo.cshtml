@@ -10,16 +10,18 @@
         <br />
         <i class="glyphicon glyphicon-user"></i> <i><small><strong> @Model.User.UserName</small> </strong></i>
     </div>
-
-    <form>
+    @if (actualId != "-1") //inseamnaa ca avem user saua admin.
+    {
+        <form>
         @Html.ActionLink(
-        linkText: "Save",
-        actionName: "Save",
-        controllerName: "SavedBookmarks",
-        routeValues: new { id = @Model.BookmarkId },
-        htmlAttributes: new { @class = "btn btn-primary"}
-        )
-    </form>
+             linkText: "Save",
+             actionName: "Save",
+             controllerName: "SavedBookmarks",
+             routeValues: new { id = @Model.BookmarkId },
+             htmlAttributes: new { @class = "btn btn-primary" }
+             )
+        </form>
+    }
     <!--$('#btnsubmit').click(function ()
     {-->
 

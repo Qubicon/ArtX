@@ -88,7 +88,7 @@ namespace ArtX.Controllers
             ViewBag.userId = currentUserId;
             ViewBag.b = b;
 
-           var bookmarks = new List<Bookmark>();
+            var bookmarks = new List<Bookmark>();
 
            var allBookmarks =  db.Bookmarks.Include("Album").Include("User");
 

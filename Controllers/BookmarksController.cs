@@ -26,8 +26,8 @@ namespace ArtX.Controllers
             ViewBag.Bookmarks = bookmarks;
 
             string userId = "-1";
-
             string b = "nu";
+ 
 
             if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 userId = User.Identity.GetUserId();
