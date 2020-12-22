@@ -19,19 +19,12 @@
                  actionName: "Save",
                  controllerName: "SavedBookmarks",
                  routeValues: new { id = bookmark.BookmarkId },
-                 htmlAttributes: new { @class = "btn btn-primary pull-right"}
+                 htmlAttributes: new { @class = "btn btn-primary pull-right glyphicon glyphicon-bookmark" }
                  )
         </form>
     }
 
     @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
-    <div align="center"><a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
-    <br />
 </div>
 }
-
-<a href="/Bookmarks/New">Adauga bookmark</a>
-<br />
-<a href="/Albums/Index/">Afisare albume</a>
-<br />

@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body style="        background-color: #131314">
     <div class="navbar navbar-inverse navbar-fixed-top">@*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
         <div class="container">
             <div class="navbar-header">
@@ -17,10 +17,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ArtX", "Index", "Bookmarks", new { area = "" }, new { @class = "navbar-brand" })
+                <h1 style=" text-decoration-style:wavy; font-size:25px; padding-bottom:14px; color:lightgrey">ArtX</h1>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style=" padding-top: 10px">
                     <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
                     <li>@Html.ActionLink("Categories", "Index", "Albums")</li>
 
@@ -38,7 +38,7 @@
                     }
 
 
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                 @*   <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
