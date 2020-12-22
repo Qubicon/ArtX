@@ -1,69 +1,41 @@
 ﻿
 @{
     string actualId = this.ViewData.ContainsKey("1") ? this.ViewData["1"].ToString() : string.Empty;
-    string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty;
-}
+    string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty; //acum nu mai folosim asta aici, ca am afisat din Bookmarks/Index
+}                                                                                                @*dar il mai tinem ca poate o sa avem nevoie din nou*@
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <big>@Model.Title</big>
-        <br />
-        <i class="glyphicon glyphicon-user"></i> <i><small><strong> @Model.User.UserName</small> </strong></i>
-    </div>
-    @if (actualId != "-1") //inseamnaa ca avem user saua admin.
+<div class="panel-heading">
+    <big>@Model.Title</big>
+    <br />
+    <i class="glyphicon glyphicon-user"></i> <i><small><strong> @Model.User.UserName</small> </strong></i>
+</div>
+
+<div class="panel-body">
+    Continut articol: <strong>@Model.Content</strong>
+    <br />
+    <span class="label label-success">@Model.Date</span>
+    <br />
+    Rating: <strong>@Model.Rating</strong>
+    <br />
+    Descriere: <strong>@Model.Description</strong>
+    <br />
+    <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
+    <br />
+
+    @if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
     {
-        <form>
-        @Html.ActionLink(
-             linkText: "Save",
-             actionName: "Save",
-             controllerName: "SavedBookmarks",
-             routeValues: new { id = @Model.BookmarkId },
-             htmlAttributes: new { @class = "btn btn-primary" }
-             )
+        <hr>
+        <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@Model.BookmarkId">Modifica bookmark</a>
+    }
+    @if (actualId == Model.UserId || isAdmin == "da")
+    {
+        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
         </form>
     }
-    <!--$('#btnsubmit').click(function ()
-    {-->
 
-    @*  var deviceid = $('#ddldevice option:selected').val();
-        alert(deviceid);  //Comment it after testing*@
-
-    <!--$.ajax
-    ({
-    type: 'GET',
-    data: { id: @Model.BookmarkId },
-    dataType: "json",
-    url: '@Url.Action("Save", "SavedBookmarks")',
-    success: function (result) {}
-    });
-    }-->
-
-    <div class="panel-body">
-        Continut articol: <strong>@Model.Content</strong>
-        <br />
-        <span class="label label-success">@Model.Date</span>
-        <br />
-        Rating: <strong>@Model.Rating</strong>
-        <br />
-        Descriere: <strong>@Model.Description</strong>
-        <br />
-        <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
-        <br />
-
-        @if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
-        {
-            <hr>
-            <a class="btn btn-success pull-left" href="/Bookmarks/Edit/@Model.BookmarkId">Modifica bookmark</a>
-        }
-        @if (actualId == Model.UserId || isAdmin == "da")
-        {
-            <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId">
-                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
-            </form>
-        }
-        <br />
+    <br />
 
 
-    </div>
 </div>

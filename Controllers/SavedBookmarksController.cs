@@ -12,20 +12,26 @@ namespace ArtX.Controllers
     public class SavedBookmarksController : Controller
     {
         private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
-        
+
         // GET: SavedBookmarks
-  
+        public ActionResult Remove(int id)
+        {
+            string currentUserId = User.Identity.GetUserId();
+            SavedBookmark savedBookmark = db.SavedBookmarks.FirstOrDefault(x => x.BookmarkId == id && x.UserId == currentUserId);
+            db.SavedBookmarks.Remove(savedBookmark);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult Save(int id)
         {
-            /* Bookmark bookmark = db.Bookmarks.Find(bookmarkId);*/
-            /* var appUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);*/
-
             string currentUserId = User.Identity.GetUserId();
             SavedBookmark savedBookmark = new SavedBookmark();
             savedBookmark.BookmarkId = id;
             savedBookmark.UserId = currentUserId;
-      /*      db.SavedBookmarks.Add(savedBookmark);*/
-            /*db.SaveChanges();*/
+
             try
             {
                 var b = db.SavedBookmarks.FirstOrDefault(x => x.BookmarkId == savedBookmark.BookmarkId && x.UserId == savedBookmark.UserId);
@@ -51,27 +57,7 @@ namespace ArtX.Controllers
                 return Redirect("/Bookmarks/Index");
             }
         }
-/*
-        [HttpPost]
-        public ActionResult Save(SavedBookmark savedBookmark)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.SavedBookmarks.Add(savedBookmark);
-                    db.SaveChanges();
-                    TempData["message"] = "Bookmark-ul a fost adaugat!";
-                    return RedirectToAction("Index");
-                }
-                else
-                    return View(savedBookmark);
-            }
-            catch (Exception e)
-            {
-                return View(savedBookmark);
-            }
-        }*/
+
 
         public ActionResult Index()
         {

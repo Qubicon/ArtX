@@ -261,7 +261,6 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Shared\BookmarkInfo.cshtml" />
     <Content Include="Views\SavedBookmarks\Index.cshtml" />
-    <Content Include="Views\SavedBookmarks\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

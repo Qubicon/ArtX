@@ -10,7 +10,21 @@
 @foreach (var bookmark in ViewBag.Bookmarks)
 {
 <div class="panel panel-default">
-     @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark) bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b }})
+
+    @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
+    {
+        <form>
+            @Html.ActionLink(
+                 linkText: "Save",
+                 actionName: "Save",
+                 controllerName: "SavedBookmarks",
+                 routeValues: new { id = bookmark.BookmarkId },
+                 htmlAttributes: new { @class = "btn btn-primary pull-right"}
+                 )
+        </form>
+    }
+
+    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
     <div align="center"><a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
     <br />
