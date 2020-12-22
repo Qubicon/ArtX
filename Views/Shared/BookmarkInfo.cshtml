@@ -4,13 +4,14 @@
     string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty; //acum nu mai folosim asta aici, ca am afisat din Bookmarks/Index
 }                                                                                                @*dar il mai tinem ca poate o sa avem nevoie din nou*@
 
-<div class="panel-heading">
-    <big>@Model.Title</big>
+<div class="panel-heading" style="background-color: #353535;
+">
+    <big style="color: #eb3b5a; font-family: 'Comic Sans MS'; font-size: 17px;">@Model.Title</big>
     <br />
-    <i class="glyphicon glyphicon-user"></i> <i><small><strong> @Model.User.UserName</small> </strong></i>
+    <i class="glyphicon glyphicon-user" style=" color:#e5e5e5"><strong><small> @Model.User.UserName</small> </strong></i>
 </div>
 
-<div class="panel-body">
+<div class="panel-body" style="background-color:#1f1f1f; color:#b7b7b7">
     Continut articol: <strong>@Model.Content</strong>
     <br />
     <span class="label label-success">@Model.Date</span>
@@ -29,13 +30,19 @@
     }
     @if (actualId == Model.UserId || isAdmin == "da")
     {
-        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId">
+        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId" style="background-color:#1f1f1f;">
             @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
+            <button class="btn btn-danger pull-right" type="submit"><i class="glyphicon glyphicon-trash"></i> Delete</button>
         </form>
     }
 
-    <br />
 
+    <div align="center" style="background-color:#1f1f1f; ">
+        <a class="btn btn-info" href="/Bookmarks/Show/@Model.BookmarkId"
+           style="color: #272626;
+                background-color: #eb3b5a;
+                border-color: #272626;
+                font-size: 14px; margin-bottom:3px;">View  <i class="glyphicon glyphicon-eye-open"></i></a>
+    </div>
 
 </div>
