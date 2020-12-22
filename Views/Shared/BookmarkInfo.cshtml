@@ -10,6 +10,32 @@
         <br />
         <i class="glyphicon glyphicon-user"></i> <i><small><strong> @Model.User.UserName</small> </strong></i>
     </div>
+
+    <form>
+        @Html.ActionLink(
+        linkText: "Save",
+        actionName: "Save",
+        controllerName: "SavedBookmarks",
+        routeValues: new { id = @Model.BookmarkId },
+        htmlAttributes: new { @class = "btn btn-primary"}
+        )
+    </form>
+    <!--$('#btnsubmit').click(function ()
+    {-->
+
+    @*  var deviceid = $('#ddldevice option:selected').val();
+        alert(deviceid);  //Comment it after testing*@
+
+    <!--$.ajax
+    ({
+    type: 'GET',
+    data: { id: @Model.BookmarkId },
+    dataType: "json",
+    url: '@Url.Action("Save", "SavedBookmarks")',
+    success: function (result) {}
+    });
+    }-->
+
     <div class="panel-body">
         Continut articol: <strong>@Model.Content</strong>
         <br />
@@ -34,8 +60,8 @@
                 <button class="btn btn-danger pull-right" type="submit">Sterge bookmark</button>
             </form>
         }
-            <br />
+        <br />
 
 
-        </div>
+    </div>
 </div>
