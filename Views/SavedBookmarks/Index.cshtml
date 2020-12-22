@@ -7,10 +7,14 @@
 
 @foreach (var bookmark in ViewBag.myBookmarks)
 {
-    <div class="panel panel-default">
-        @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b }})
+<div class="panel panel-default">
+    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
-        <div align="center"><a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
-        <br />
-    </div>
+    <div align="center"><a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
+    <br />
+    <div align="center"><a class="btn btn-info" href="/SavedBookmarks/Remove/@bookmark.BookmarkId">Remove </a></div>
+
+    <br />
+    <br />
+</div>
 }
