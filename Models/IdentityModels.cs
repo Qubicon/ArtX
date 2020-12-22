@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -29,6 +30,7 @@ namespace ArtX.Models
         public DbSet<Bookmark> Bookmarks { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<SavedBookmark> SavedBookmarks { get; set; }
 
         public static ApplicationDbContext Create()
         {

@@ -5,7 +5,11 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right">
+    @if ((User.IsInRole("User")) || (User.IsInRole("Admin")))
+    {
+        <li>@Html.ActionLink("MyBookmarks", "Index", "SavedBookmarks")</li>
+    }
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>

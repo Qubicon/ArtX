@@ -16,6 +16,11 @@ namespace ArtX.Controllers
 
         public ActionResult Index()
         {
+            /*foreach (var sb in db.SavedBookmarks)
+                db.SavedBookmarks.Remove(sb);
+
+            db.SaveChanges();*/
+
             //bookmarksurile vor fi afisate in ordinea descrescatoare a Ratingurilor:
             var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
             ViewBag.Bookmarks = bookmarks;
@@ -65,9 +70,7 @@ namespace ArtX.Controllers
             ViewBag.b = b;
 
             if (bookmark.Album is not null)
-            {
                 ViewBag.Album = bookmark.Album;
-            }
 
             return View(bookmark);
 
@@ -188,59 +191,16 @@ namespace ArtX.Controllers
         {
             Bookmark bookmark = db.Bookmarks.Find(id);
             db.Bookmarks.Remove(bookmark);
+            
+            var sb = db.SavedBookmarks.FirstOrDefault(x => x.BookmarkId == id);
+            db.SavedBookmarks.Remove(sb);
+
             db.SaveChanges();
+            
             TempData["message"] = "Bookmark-ul a fost sters!";
+            
             return RedirectToAction("Index");
         }
-
-
-      /*  aici o sa l modific sa fac si Save:*/
-      /*  // GET: New
-        [Authorize(Roles = "Admin,User")]
-        public ActionResult New()
-        {
-            Bookmark bookmark = new Bookmark();
-            bookmark.Alb = GetAllAlbums();
-
-
-            bookmark.UserId = User.Identity.GetUserId();
-
-            var albums = from alb in db.Albums
-                         select alb;
-            ViewBag.Albums = albums;
-
-            return View(bookmark);
-        }
-
-        [Authorize(Roles = "Admin,User")]
-        [HttpPost]
-        public ActionResult New(Bookmark bookmark)
-        {
-            bookmark.UserId = User.Identity.GetUserId();
-            bookmark.Date = DateTime.Now;
-
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Bookmarks.Add(bookmark);
-                    db.SaveChanges();
-                    TempData["message"] = "Bookmark-ul a fost adaugat!";
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    bookmark.Alb = GetAllAlbums();
-                    return View(bookmark);
-                }
-            }
-            catch (Exception e)
-            {
-                bookmark.Alb = GetAllAlbums();
-                return View(bookmark);
-            }
-        }
-*/
 
 
         [NonAction]
