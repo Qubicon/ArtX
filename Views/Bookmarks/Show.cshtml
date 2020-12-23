@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Afisare Bookmark";
+    ViewBag.Title = "Show Bookmark";
 }
 
 <br />
-<a href="/Bookmarks/Index">Inapoi la bookmarks</a>
+<a href="/Bookmarks/Index" class="btn btn-default glyphicon glyphicon-arrow-left"></a>
 @*<br /><a href="/Albums/AlbumId?">Inapoi la album</a> sau o sa mai putem ajunge la un bookmark plecand dintr un singur album*@
 
     @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark) ViewBag.Bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })

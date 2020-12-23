@@ -5,7 +5,7 @@
 
 <h1>@ViewBag.Message</h1>
 
-<h2>Afisare albume</h2>
+<div align="center"><h2>Categories</h2></div>
 
 @*cand adaugam users, aici o sa le afisam doar pe cele cu id ul userului. Momentan le afisam pe toate cele existente*@
 @foreach (var album in ViewBag.Albums)
@@ -14,12 +14,13 @@
     <div class="panel-heading">@album.AlbumTitle</div>
 
     <br />
-    <a href="/Albums/Show/@album.AlbumId">Deschide albumul</a>
+    <div align="center"><a href="/Albums/Show/@album.AlbumId" class="btn btn-default glyphicon glyphicon-hand-up"></a></div>
     
     @using (Html.BeginForm(actionName: "Delete", controllerName: "Albums", method: FormMethod.Post, routeValues: new { id = @album.AlbumId }))
     {
         @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-danger pull-right" type="submit">Sterge albumul</button>
+        <button class="btn btn-danger pull-right" type="submit"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+  
     }
 
     @*  <br />
@@ -31,5 +32,5 @@
 }
 
 <br />
-<a href="/Albums/New">Adauga album</a>
+<a href="/Albums/New" class="btn btn-default glyphicon glyphicon-plus">AddCategory</a>
 <br />

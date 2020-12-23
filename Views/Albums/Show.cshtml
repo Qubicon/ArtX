@@ -3,21 +3,39 @@
     ViewBag.Title = "Show";
 }
 
-<div class="panel panel-default">
-    <div class="panel-heading">@ViewBag.Album.AlbumTitle</div>
-</div>
-
 <br />
-@foreach (ArtX.Models.Bookmark bookmark in ViewBag.Album.Bookmarks)
-{
+<a href="/Albums/Index" class="btn btn-default glyphicon glyphicon-arrow-left"></a>
+<div align="center"><h2>@ViewBag.Album.AlbumTitle</h2></div>
 
-    <div class="panel panel-default">
-        @Html.Partial("BookmarkInfo", bookmark)
-        <br />
 
-        <div align="center"><a class="btn-info col-xs-pull-5" href="/Bookmarks/Show/@bookmark.BookmarkId">Vizualizeaza bookmark-ul</a></div>
-        <br />
-         <br />
-    </div>
+    <br />
+    @foreach (ArtX.Models.Bookmark bookmark in ViewBag.Album.Bookmarks)
+    {
 
-}
+        <div class="panel panel-default">
+
+            @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
+            {
+                <form>
+                    @Html.ActionLink(
+                         linkText: "Save",
+                         actionName: "Save",
+                         controllerName: "SavedBookmarks",
+                         routeValues: new { id = bookmark.BookmarkId },
+                         htmlAttributes: new { @class = "btn btn-primary pull-right glyphicon glyphicon-bookmark" }
+                         )
+                </form>
+            }
+
+            @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+
+            <div align="center" style="background-color:#1f1f1f; ">
+                <a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId"
+                   style="color: #272626;
+                background-color: #eb3b5a;
+                border-color: #272626;
+                font-size: 14px; margin-bottom:3px;">View  <i class="glyphicon glyphicon-eye-open"></i></a>
+            </div>
+        </div>
+
+    }
