@@ -18,6 +18,19 @@ namespace ArtX.Controllers
         // GET: Albums
         public ActionResult Index()
         {
+            string userId = "-1";
+
+            string b = "nu";
+
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                userId = User.Identity.GetUserId();
+
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                b = "da";
+
+            ViewBag.userId = userId;
+            ViewBag.b = b;
+
             var albums = db.Albums;
             ViewBag.Albums = albums;
             if (TempData.ContainsKey("message"))
@@ -79,6 +92,7 @@ namespace ArtX.Controllers
         [Authorize(Roles = "Admin, User")]
         public ActionResult Delete(int id)
         {
+            
             Album album = db.Albums.Find(id);
             db.Albums.Remove(album);
             db.SaveChanges();

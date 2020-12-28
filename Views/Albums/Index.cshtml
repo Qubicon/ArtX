@@ -18,10 +18,12 @@
     
     @using (Html.BeginForm(actionName: "Delete", controllerName: "Albums", method: FormMethod.Post, routeValues: new { id = @album.AlbumId }))
     {
-        @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-danger pull-right" type="submit"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-  
-    }
+         if (ViewBag.userId == album.UserId || ViewBag.b == "da")
+         {
+             @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+         }
+   }
 
     @*  <br />
         <a href="/Albums/Edit/@album.AlbumId">Editeaza albumul</a>
