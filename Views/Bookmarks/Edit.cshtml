@@ -25,6 +25,11 @@
     @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
     <br />
 
+    @Html.Label("Tags", "Bookmark's Tags")
+    <br />
+    @Html.Editor("Tags", new { htmlAttributes = new { @class = "form-control" } })
+    <br />
+
     @Html.HiddenFor(m => m.Date)
 
     <label>Album</label>
