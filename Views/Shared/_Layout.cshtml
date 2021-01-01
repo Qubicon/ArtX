@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ArtX</title>
+    @Styles.Render("~/Content/Site.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body style="        background-color: #131314">
-    <div class="navbar navbar-inverse navbar-fixed-top">@*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
+<body style="background-color: #06090f">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="        background-color: #161b22;
+        border-color: #21262d";>@*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 style=" text-decoration-style:wavy; font-size:25px; padding-bottom:14px; color:lightgrey">ArtX</h1>
+                <h1 style=" text-decoration-style:wavy; font-size:25px; padding-bottom:14px; color: #337ab7;">ArtX</h1>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style=" padding-top: 10px">
@@ -46,10 +48,11 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <hr style="border-color:#21262d">
         <footer>
-            <p>&copy; @DateTime.Now.Year - ArtX</p>
-        </footer>
+            <p style="        color: #c9d1d9
+">&copy; @DateTime.Now.Year - ArtX</p>
+    </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
