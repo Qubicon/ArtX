@@ -215,16 +215,11 @@ namespace ArtX.Controllers
             Bookmark bookmark = db.Bookmarks.Find(id);
             db.Bookmarks.Remove(bookmark);
             
-
             foreach (var i in db.SavedBookmarks)
             {
                 if (i.BookmarkId == id)
                     db.SavedBookmarks.Remove(i);
             }
-
-          /*  var sb = db.SavedBookmarks.FirstOrDefault(x => x.BookmarkId == id);
-            db.SavedBookmarks.Remove(sb);*/
-
 
             db.SaveChanges();
             
