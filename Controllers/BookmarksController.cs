@@ -11,6 +11,8 @@ namespace ArtX.Controllers
     {
         private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
 
+        private int _perPage = 3;
+
         // GET: Bookmarks
         [Authorize(Roles = "User,Admin"), AllowAnonymous]
 
@@ -42,6 +44,27 @@ namespace ArtX.Controllers
             {
                 ViewBag.Message = TempData["message"];
             }
+
+            // PAGINATION
+
+            var totalItems = bookmarks.Count();
+
+            var currentPage = Convert.ToInt32(Request.Params.Get("page"));
+
+            var offset = 0;
+
+            if (!currentPage.Equals(0))
+            {
+                offset = (currentPage - 1) * this._perPage;
+            }
+
+            var paginatedBookmarks = bookmarks.Skip(offset).Take(this._perPage);
+
+            // ViewBag.perPage = this._perPage;
+
+            ViewBag.total = totalItems;
+            ViewBag.lastPage = Math.Ceiling((float)totalItems / (float)this._perPage);
+            ViewBag.Bookmarks = paginatedBookmarks;
 
             return View();
         }
