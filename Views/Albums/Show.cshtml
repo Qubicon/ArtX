@@ -5,37 +5,40 @@
 
 <br />
 <a href="/Albums/Index" class="btn btn-default glyphicon glyphicon-arrow-left"></a>
-<div align="center"><h2>@ViewBag.Album.AlbumTitle</h2></div>
+<div align="center"><h3 style="color: #c9d1d9; text-align:center;">@ViewBag.Album.AlbumTitle</h3></div>
 
 
     <br />
     @foreach (ArtX.Models.Bookmark bookmark in ViewBag.Album.Bookmarks)
     {
 
-        <div class="panel panel-default">
+<div class="panel panel-default" style="        border-color: #21262d;
+        overflow: auto;
+        background-color: #161b22;">
 
-            @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
-            {
-                <form>
-                    @Html.ActionLink(
-                         linkText: "Save",
-                         actionName: "Save",
-                         controllerName: "SavedBookmarks",
-                         routeValues: new { id = bookmark.BookmarkId },
-                         htmlAttributes: new { @class = "btn btn-primary pull-right glyphicon glyphicon-bookmark" }
-                         )
-                </form>
-            }
+    @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
+    {
 
-            @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+        <form style="margin:0; padding:0;">
+            @Html.ActionLink(
+                 linkText: "Save",
+                 actionName: "Save",
+                 controllerName: "SavedBookmarks",
+                 routeValues: new { id = bookmark.BookmarkId },
+                 htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
+                 )
+        </form>
+    }
 
-            <div align="center" style="background-color:#1f1f1f; ">
-                <a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId"
-                   style="color: #272626;
-                background-color: #eb3b5a;
-                border-color: #272626;
-                font-size: 14px; margin-bottom:3px;">View  <i class="glyphicon glyphicon-eye-open"></i></a>
-            </div>
-        </div>
+    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+
+    <div align="center" style="background-color: #0d1117;">
+
+        <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
+           style="
+                margin-bottom:2px;"><img src="~/icons/chevron-expand.svg" alt="" width="20" height="20" title="Open Bookmark" style="filter: invert(40%) sepia(74%) saturate(475%) hue-rotate(165deg) brightness(94%) contrast(89%);"></a>
+    </div>
+
+</div>
 
     }

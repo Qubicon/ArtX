@@ -23,4 +23,35 @@ textarea {
     max-width: 280px;
 }
 
+/* Navbar */
 
+.navbar {
+    height: 65px!important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #c9d1d9;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+        border-bottom: 2px solid;
+        border-bottom-color: #337ab7;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-width: 50%;
+}
+
+/* TempData */
+
+.notif{
+    background-color: #161b22;
+        border-bottom: 2px solid;
+        border-bottom-color: #337ab7;
+        border-radius: 1.5px;
+        width: 1395.250;
+        align:left;
+}
+
+body {
+    color: #c9d1d9 !important;
+}
