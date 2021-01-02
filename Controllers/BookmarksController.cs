@@ -14,28 +14,46 @@ namespace ArtX.Controllers
 
         private int _perPage = 3;
 
+        public static string lastC, lastO;
+
         // GET: Bookmarks
         [Authorize(Roles = "User,Admin"), AllowAnonymous]
 
-        public ActionResult Index(string Criteriu = "Data", string Ordine = "Desc")
+        public ActionResult Index(string Criteriu = "def", string Ordine = "def")
         {
             /*foreach (var sb in db.SavedBookmarks)
                 db.SavedBookmarks.Remove(sb);
 
             db.SaveChanges();*/
-            var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating);//aici ma obliga sa l initializez cu cv
+            var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date); //default
 
             if (Criteriu == "Rating" && Ordine == "Desc")
-                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating);
+            {   
+                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
+                lastC = Criteriu;
+                lastO = Ordine;
+            }
 
             if (Criteriu == "Rating" && Ordine == "Cresc")
+            { 
                 bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => o.Rating);
+                lastC = Criteriu;
+                lastO = Ordine;
+            }
 
             if (Criteriu == "Data" && Ordine == "Desc")
+            { 
                 bookmarks = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date);
+                lastC = Criteriu;
+                lastO = Ordine;
+            }
 
             if (Criteriu == "Data" && Ordine == "Cresc")
+            { 
                 bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => o.Date);
+                lastC = Criteriu;
+                lastO = Ordine;
+            }
 
             ViewBag.Bookmarks = bookmarks;
 
@@ -71,7 +89,21 @@ namespace ArtX.Controllers
                 // Search dupa titlu, descriere si tags
 
                 bookmarks = db.Bookmarks.Where(bookmark => listaIds.Contains(bookmark.BookmarkId)).Include("Album").Include("User").OrderBy(a => a.Date);
-   
+
+
+                if (lastC == "Rating" && lastO == "Desc")
+                    bookmarks = bookmarks.OrderBy(o => -o.Rating);
+
+                if (lastC == "Rating" && lastO == "Cresc")
+                    bookmarks = bookmarks.OrderBy(o => o.Rating);
+
+                if (lastC == "Data" && lastO == "Desc" || lastC == "def" && lastO =="def")
+                    bookmarks = bookmarks.OrderByDescending(o => o.Date);
+
+                if (lastC == "Data" && lastO == "Cresc")
+                    bookmarks = bookmarks.OrderBy(o => o.Date);
+
+                ViewBag.Bookmarks = bookmarks;
             }
 
             // PAGINATION
