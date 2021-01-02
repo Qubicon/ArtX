@@ -34,10 +34,10 @@ textarea {
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-        border-bottom: 2px solid;
+        border-bottom: 3px solid;
         border-bottom-color: #337ab7;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+/*        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;*/
         border-bottom-width: 50%;
 }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -24,6 +25,7 @@ namespace ArtX.Controllers
             db.SaveChanges();*/
 
             //bookmarksurile vor fi afisate in ordinea descrescatoare a Ratingurilor:
+
             var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
             ViewBag.Bookmarks = bookmarks;
 
@@ -43,6 +45,23 @@ namespace ArtX.Controllers
             if (TempData.ContainsKey("message"))
             {
                 ViewBag.Message = TempData["message"];
+            }
+
+            // SEARCH
+
+            var search = ""; 
+            
+            if (Request.Params.Get("search") != null)
+            {
+                search = Request.Params.Get("search").Trim();
+                // trim whitespace from search string
+
+                List<int> listaIds = db.Bookmarks.Where(
+                    at => at.Title.Contains(search) || at.Description.Contains(search) || at.Tags.Contains(search)).Select(a => a.BookmarkId).ToList();
+                // Search dupa titlu, descriere si tags
+
+                bookmarks = db.Bookmarks.Where(bookmark => listaIds.Contains(bookmark.BookmarkId)).Include("Album").Include("User").OrderBy(a => a.Date);
+   
             }
 
             // PAGINATION

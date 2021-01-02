@@ -5,22 +5,54 @@
 
 <br />
 
-@*<img src="~/icons/chevron-up.svg" alt="" width="32" height="32" title="X" style="filter: invert(27%) sepia(84%) saturate(2685%) hue-rotate(209deg) brightness(99%) contrast(89%);">*@
-
-@*<hr style="border-color:#21262d">*@
-
 @if (ViewBag.Message != null)
 {
-<br />
-<div class="notif">
-            <img src="~/icons/info.svg" width="24" height="24" class="rounded mr-2" alt="info" style="filter: invert(90%) sepia(12%) saturate(152%) hue-rotate(169deg) brightness(91%) contrast(94%);
+    <br />
+    <div class="notif">
+        <img src="~/icons/info.svg" width="24" height="24" class="rounded mr-2" alt="info" style="filter: invert(90%) sepia(12%) saturate(152%) hue-rotate(169deg) brightness(91%) contrast(94%);
 ">
-            <strong class="mr-auto" style="color:#337ab7">ArtX</strong>
-            <small style="        color: #c9d1d9;
+        <strong class="mr-auto" style="color:#337ab7">ArtX</strong>
+        <small style="        color: #c9d1d9;
 ">@DateTime.Now | <strong>@ViewBag.Message</strong></small>
 
 </div>
 }
+
+
+<div class="container">
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <form class="card card-sm" method="GET">
+                <div class="card-body row no-gutters align-items-center" style="width:325px;">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+
+
+                    <input class="form-control form-control-lg form-controlborderless" type="text" name="search"
+                           value="@ViewBag.SearchString"
+                           placeholder="Search topics or keywords"
+                           style="background-color: #06090f; border-color: #21262d; color: #c9d1d9; display: inline-flex;">
+
+
+                    <button class="btn pull-right" style="background-color: #06090f; color: #c9d1d9; border-color: #21262d;"
+                            type="submit">
+                        <img src="~/icons/search.svg" / style="filter: invert(95%) sepia(5%) saturate(571%) hue-rotate(178deg) brightness(90%) contrast(88%); ">
+                    </button>
+
+                    <!--end of col-->
+                </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+</div>
+
+@*<img src="~/icons/chevron-up.svg" alt="" width="32" height="32" title="X" style="filter: invert(27%) sepia(84%) saturate(2685%) hue-rotate(209deg) brightness(99%) contrast(89%);">*@
+
+@*<hr style="border-color:#21262d">*@
+
 
 <br />
 
@@ -28,34 +60,34 @@
 
 @foreach (var bookmark in ViewBag.Bookmarks)
 {
-<div class="panel panel-default" style="        border-color: #21262d;
+    <div class="panel panel-default" style="        border-color: #21262d;
         overflow: auto;
         background-color: #161b22;">
 
-    @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
-    {   
+        @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
+        {
 
-        <form style="margin:0; padding:0;">
-            @Html.ActionLink(
-                 linkText: "Save",
-                 actionName: "Save",
-                 controllerName: "SavedBookmarks",
-                 routeValues: new { id = bookmark.BookmarkId },
-                 htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark" , @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;"}
-                 )
-        </form>
-    }
+            <form style="margin:0; padding:0;">
+                @Html.ActionLink(
+                     linkText: "Save",
+                     actionName: "Save",
+                     controllerName: "SavedBookmarks",
+                     routeValues: new { id = bookmark.BookmarkId },
+                     htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
+                     )
+            </form>
+        }
 
-    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+        @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
-    <div align="center" style="background-color: #0d1117;">
+        <div align="center" style="background-color: #0d1117;">
 
-        <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
-           style="
+            <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
+               style="
                 margin-bottom:2px;"><img src="~/icons/chevron-expand.svg" alt="" width="20" height="20" title="Open Bookmark" style="filter: invert(40%) sepia(74%) saturate(475%) hue-rotate(165deg) brightness(94%) contrast(89%);"></a>
-    </div>
+        </div>
 
-</div>
+    </div>
 }
 
 <div style="display: flex; justify-content: center;">
