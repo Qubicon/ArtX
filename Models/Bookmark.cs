@@ -23,9 +23,9 @@ namespace ArtX.Models
         [DataType(DataType.MultilineText)]
         public string Content { get; set; } // Momentan afisez ca string
 
-        public int Rating { get; set; } // (Asta cumva ar trebui sa fie initializat cu 0 din db - momentan il afisam ca number) Vreau sa-l fac cu stelute, dar va fi mai complicat si nu stiu daca avem timp pentru asta
+        public int Rating { get; set; } //nr-ul de persoane care l au salvat
         public DateTime Date { get; set; }
-
+        [RegularExpression(@"((\#[a-z0-9]+\s))*", ErrorMessage = "Dupa tag este necesar un spatiu si nu pot fi introduse tag-uri goale (corect:#catel #acasa21 #pisica , gresit:#catel#pisica, gresit: # ")]
         public string Tags { get; set; }
 
         public string UserId { get; set; }
