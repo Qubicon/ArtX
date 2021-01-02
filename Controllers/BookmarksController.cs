@@ -14,7 +14,7 @@ namespace ArtX.Controllers
 
         private int _perPage = 3;
 
-        public static string lastC,lastO;
+        public static string lastC, lastO;
 
         // GET: Bookmarks
         [Authorize(Roles = "User,Admin"), AllowAnonymous]
