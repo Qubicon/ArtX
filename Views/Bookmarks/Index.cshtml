@@ -4,6 +4,21 @@
 }
 
 <br />
+@using (Html.BeginForm("Index", "Bookmarks"))
+{
+
+    <select id="Criteriu" name="Criteriu">
+        <option value="Rating">Rating</option>
+        <option value="Data">Data</option>
+    </select>
+
+    <select id="Ordine" name="Ordine">
+        <option value="Desc">Descrescator</option>
+        <option value="Cresc">Crescator</option>
+    </select>
+
+    <input type="submit" />
+}
 
 @if (ViewBag.Message != null)
 {
