@@ -120,6 +120,7 @@ namespace ArtX.Controllers
         {
             bookmark.UserId = User.Identity.GetUserId();
             bookmark.Date = DateTime.Now;
+            bookmark.Rating = 0;
 
             try
             {

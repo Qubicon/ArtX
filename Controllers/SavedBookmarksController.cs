@@ -16,8 +16,11 @@ namespace ArtX.Controllers
         // GET: SavedBookmarks
         public ActionResult Remove(int id)
         {
+            Bookmark bookmark = db.Bookmarks.FirstOrDefault(x => x.BookmarkId == id);
             string currentUserId = User.Identity.GetUserId();
             SavedBookmark savedBookmark = db.SavedBookmarks.FirstOrDefault(x => x.BookmarkId == id && x.UserId == currentUserId);
+
+            bookmark.Rating -= 1;
             db.SavedBookmarks.Remove(savedBookmark);
             db.SaveChanges();
 
@@ -27,10 +30,12 @@ namespace ArtX.Controllers
 
         public ActionResult Save(int id)
         {
+            Bookmark bookmark = db.Bookmarks.FirstOrDefault(x => x.BookmarkId == id);
             string currentUserId = User.Identity.GetUserId();
             SavedBookmark savedBookmark = new SavedBookmark();
             savedBookmark.BookmarkId = id;
             savedBookmark.UserId = currentUserId;
+            bookmark.Rating += 1;
 
             try
             {
