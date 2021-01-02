@@ -17,16 +17,26 @@ namespace ArtX.Controllers
         // GET: Bookmarks
         [Authorize(Roles = "User,Admin"), AllowAnonymous]
 
-        public ActionResult Index()
+        public ActionResult Index(string Criteriu = "Data", string Ordine = "Desc")
         {
             /*foreach (var sb in db.SavedBookmarks)
                 db.SavedBookmarks.Remove(sb);
 
             db.SaveChanges();*/
+            var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating);//aici ma obliga sa l initializez cu cv
 
-            //bookmarksurile vor fi afisate in ordinea descrescatoare a Ratingurilor:
+            if (Criteriu == "Rating" && Ordine == "Desc")
+                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating);
 
-            var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
+            if (Criteriu == "Rating" && Ordine == "Cresc")
+                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => o.Rating);
+
+            if (Criteriu == "Data" && Ordine == "Desc")
+                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date);
+
+            if (Criteriu == "Data" && Ordine == "Cresc")
+                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => o.Date);
+
             ViewBag.Bookmarks = bookmarks;
 
             string userId = "-1";
