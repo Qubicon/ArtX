@@ -94,6 +94,7 @@ namespace ArtX.Controllers
             ViewBag.total = totalItems;
             ViewBag.lastPage = Math.Ceiling((float)totalItems / (float)this._perPage);
             ViewBag.Bookmarks = paginatedBookmarks;
+            ViewBag.SearchString = search;
 
             return View();
         }
