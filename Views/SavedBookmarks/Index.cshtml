@@ -2,22 +2,31 @@
 @{
     ViewBag.Title = "MyBookmarks";
 }
+<br />
+<h3 style="color: #c9d1d9; text-align:center;">My Bookmarks</h3>
+<br />
 
-<h2>SavedBookmarks</h2>
 
 @foreach (var bookmark in ViewBag.myBookmarks)
 {
-<div class="panel panel-default">
-    <a class="btn btn-primary pull-right glyphicon glyphicon-remove" position="absolute" href="/SavedBookmarks/Remove/@bookmark.BookmarkId">Remove </a>
-    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+    <div class="panel panel-default" style="        background-color: #161b22;
+        border-color: #21262d;">
+        <a class="btn pull-right" position="fixed" href="/SavedBookmarks/Remove/@bookmark.BookmarkId">
+            <img src="~/icons/bookmark-x-fill.svg" style="        width: 20px;
+        height: 50px;
+        border-color: #21262d;
+        filter: invert(33%) sepia(75%) saturate(1295%) hue-rotate(330deg) brightness(87%) contrast(96%);" />
+        </a>
+        @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
-    <div align="center" style="background-color:#1f1f1f; ">
-        <a class="btn btn-info" href="/Bookmarks/Show/@bookmark.BookmarkId"
-           style="color: #272626;
-                background-color: #eb3b5a;
-                border-color: #272626;
-                font-size: 14px; margin-bottom:3px;">View  <i class="glyphicon glyphicon-eye-open"></i></a>
+        <div align="center" style="background-color: #0d1117;">
+
+            <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
+               style="
+                margin-bottom:2px;"><img src="~/icons/chevron-expand.svg" alt="" width="20" height="20" title="Open Bookmark" style="filter: invert(40%) sepia(74%) saturate(475%) hue-rotate(165deg) brightness(94%) contrast(89%);"></a>
+        </div>
+
     </div>
-
-</div>
 }
+
+@*<img src="~/icons/bookmark-x-fill.svg" />*@

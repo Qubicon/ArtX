@@ -3,36 +3,77 @@
     ViewBag.Title = "Index";
 }
 
-<h1>@ViewBag.Message</h1>
+<br />
+<br />
 
-<div align="center"><h2>Categories</h2></div>
+@if (ViewBag.Message != null)
+{
+    <div class="notif">
+        <img src="~/icons/info.svg" width="24" height="24" class="rounded mr-2" alt="info" style="filter: invert(90%) sepia(12%) saturate(152%) hue-rotate(169deg) brightness(91%) contrast(94%);
+">
+        <strong class="mr-auto" style="color:#337ab7">ArtX</strong>
+        <small style="        color: #c9d1d9;
+">@DateTime.Now | <strong>@ViewBag.Message</strong></small>
 
-@*cand adaugam users, aici o sa le afisam doar pe cele cu id ul userului. Momentan le afisam pe toate cele existente*@
+</div>
+<br />
+}
+
+<a href="/Albums/New" class="btn btn-primary" style="        background-color: #161b22;
+        border-color: #21262d;
+        
+">
+    <img src="~/icons/folder-plus.svg" alt="Add Category" width="24" height="24" title="Delete" style="filter: invert(99%) sepia(5%) saturate(0%) hue-rotate(205deg) brightness(119%) contrast(100%);"> Adauga o noua categorie
+</a>
+<br />
+<br />
+
 @foreach (var album in ViewBag.Albums)
 {
-<div class="panel panel-default">
-    <div class="panel-heading">@album.AlbumTitle</div>
+    <div class="panel panel-default" style="        width: 250px;
+        border-color: #21262d;
+        overflow: auto;
+        margin: 0;
+">
+        <div class="panel-heading" style="        background-color: #161b22;
+        border-color: #21262d;
+        color: #337ab7;
+        font-size:17px;">@album.AlbumTitle</div>
 
-    <br />
-    <div align="center"><a href="/Albums/Show/@album.AlbumId" class="btn btn-default glyphicon glyphicon-hand-up"></a></div>
-    
-    @using (Html.BeginForm(actionName: "Delete", controllerName: "Albums", method: FormMethod.Post, routeValues: new { id = @album.AlbumId }))
-    {
-         if (ViewBag.userId == album.UserId || ViewBag.b == "da")
-         {
-             @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn btn-danger pull-right" type="submit"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-         }
-   }
+        <div class="pannel-body" style="        justify-items: normal;
+        background-color: #06090f;
+        border-color: #21262d;
+        height:65px;">
+            <br />
 
-    @*  <br />
-        <a href="/Albums/Edit/@album.AlbumId">Editeaza albumul</a>
-        <br />*@
-</div>
+            <a class="btn pull-left" href="/Albums/Show/@album.AlbumId">
+                <img src="~/icons/folder2-open.svg" alt="Open Category" width="24" height="24" title="Delete" style="filter: invert(41%) sepia(23%) saturate(1468%) hue-rotate(166deg) brightness(101%) contrast(88%);">
+            </a>
+
+
+
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Albums", method: FormMethod.Post, routeValues: new { id = @album.AlbumId }))
+            {
+                if (ViewBag.userId == album.UserId || ViewBag.b == "da")
+                {
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <button class="btn pull-right" type="submit" style="background-color:#06090f">
+
+                        <img src="~/icons/folder-x.svg" alt="Delete Category" width="24" height="24" title="Delete" style="filter: invert(33%) sepia(75%) saturate(1295%) hue-rotate(330deg) brightness(87%) contrast(96%);">
+
+                    </button>
+                }
+            }
+
+            <br />
+        </div>
+
+
+        @*  <br />
+            <a href="/Albums/Edit/@album.AlbumId">Editeaza albumul</a>
+            <br />*@
+    </div>
     <br />
     <br />
 }
 
-<br />
-<a href="/Albums/New" class="btn btn-default glyphicon glyphicon-plus">AddCategory</a>
-<br />
