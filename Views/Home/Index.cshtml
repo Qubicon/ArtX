@@ -3,12 +3,13 @@
 <div style="margin-top:40px;">
 
     <div style="float:left;width: 40%;">
-      
-        @Html.Partial("Pagination", (IQueryable<ArtX.Models.Bookmark>)ViewBag.Bookmarks1, new ViewDataDictionary { { "1", ViewBag.total }, { "2", ViewBag.lastPage }, { "3", ViewBag.userId }, { "4", ViewBag.b }, { "5", "10000" } });
+      <h1>Most recent</h1>
+        @Html.Partial("Pagination", (IQueryable<ArtX.Models.Bookmark>)ViewBag.Bookmarks1, new ViewDataDictionary { { "1", ViewBag.total }, { "2", ViewBag.lastPage }, { "3", ViewBag.userId }, { "4", ViewBag.b }, { "5", "10000" } })
     </div>
 
     <div style="float:right;width: 40%;">
-        @Html.Partial("Pagination", (IQueryable<ArtX.Models.Bookmark>)ViewBag.Bookmarks2, new ViewDataDictionary { { "1", ViewBag.total2 }, { "2", ViewBag.lastPage2 }, { "3", ViewBag.userId }, { "4", ViewBag.b }, { "5", "20000" } });
+        <h1>Best Rated</h1>
+        @Html.Partial("Pagination", (IQueryable<ArtX.Models.Bookmark>)ViewBag.Bookmarks2, new ViewDataDictionary { { "1", ViewBag.total2 }, { "2", ViewBag.lastPage2 }, { "3", ViewBag.userId }, { "4", ViewBag.b }, { "5", "20000" } })
     </div>
 
 </div>
