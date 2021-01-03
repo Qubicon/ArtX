@@ -4,12 +4,6 @@
     string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty;
 
 }
-
-@Model IQueryable<ArtX.Models.Bookmark>
-
-
-    @*List:*@
-
     @foreach (var bookmark in Model)
     {
         <div class="panel panel-default" style="        border-color: #21262d;

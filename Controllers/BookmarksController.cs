@@ -13,7 +13,6 @@ namespace ArtX.Controllers
         private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
 
         private int _perPage = 3;
-
         // GET: Bookmarks
         [Authorize(Roles = "User,Admin"), AllowAnonymous]
 

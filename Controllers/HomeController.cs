@@ -11,12 +11,15 @@ namespace ArtX.Controllers
     {
         private ArtX.Models.ApplicationDbContext db = new ArtX.Models.ApplicationDbContext();
 
-        private int _perPage = 3;
+        private int _perPage = 1;
+
+        public static int last1 = 1;
+        public static int last2 = 1;
 
         public ActionResult Index()
         {
             var bookmarks1 = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date); //default
-            var bookmarks2 = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date); //default
+            var bookmarks2 = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Rating); //default
 
             ViewBag.bookmarks1 = bookmarks1;
             ViewBag.bookmarks2 = bookmarks2;
@@ -34,11 +37,25 @@ namespace ArtX.Controllers
             ViewBag.userId = userId;
             ViewBag.b = b;
 
+            var page = Convert.ToInt32(Request.Params.Get("page"));
+            var currentPage = page; //aici ma obliga sa le initializez cu cv dar le modific in if uri
+            var currentPage2 = page;
+
+            if (page < 20000)
+            {
+                currentPage = page%10000;
+                currentPage2 = last2;
+                           last1 = page%10000;
+            }
+            else
+            {
+                currentPage = last1;
+                currentPage2 = page % 20000;
+                last2 = page % 20000;
+            }
             // PAGINATION 1
 
             var totalItems = bookmarks1.Count();
-
-            var currentPage = Convert.ToInt32(Request.Params.Get("page"));
 
             var offset = 0;
 
@@ -59,8 +76,6 @@ namespace ArtX.Controllers
             // PAGINATION 2
 
             var totalItems2 = bookmarks2.Count();
-
-            var currentPage2 = Convert.ToInt32(Request.Params.Get("page"));
 
             var offset2 = 0;
 

@@ -10,7 +10,7 @@
 
 </head>
 <body style="background-color: #06090f">
-    <div class="navbar navbar-inverse navbar-fixed-top" style="        background-color: #161b22;
+    <div class="navbar navbar-inverse navbar-fixed-top" style="  position:absolute;      background-color: #161b22;
         border-color: #21262d";>@*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
         <div class="container">
             <div class="navbar-header">
@@ -23,14 +23,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style=" padding-top: 10px">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
                     <li>@Html.ActionLink("Categories", "Index", "Albums")</li>
-
-                    @*  @if (UserIsInRole("Admin"))
-        {
-            <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
-            <li>@Html.ActionLink("PosteazaBookmark", "New", "Bookmarks")</li>
-        }*@
 
                     @if ((User.IsInRole("User")) || (User.IsInRole("Admin")))
                     {
@@ -40,7 +35,7 @@
                     }
 
 
-                 @*   <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @*   <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -50,8 +45,7 @@
         @RenderBody()
         <hr style="border-color:#21262d">
         <footer>
-            <p style="        color: #c9d1d9
-">&copy; @DateTime.Now.Year - ArtX</p>
+            <p style=" bottom:0; color: #c9d1d9">&copy; @DateTime.Now.Year - ArtX</p>
     </footer>
     </div>
 

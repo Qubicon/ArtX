@@ -4,52 +4,40 @@
     string lastPage_ = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty; //acum nu mai folosim asta aici, ca am afisat din Bookmarks/Index
     string actualId = this.ViewData.ContainsKey("3") ? this.ViewData["3"].ToString() : string.Empty;
     string isAdmin = this.ViewData.ContainsKey("4") ? this.ViewData["4"].ToString() : string.Empty;
-
+    string List_ = this.ViewData.ContainsKey("5") ? this.ViewData["5"].ToString() : string.Empty;
+    
     int total = Int16.Parse(total_);
     int lastPage = Int16.Parse(lastPage_);
+    int List = Int16.Parse(List_);
 }
 
-@Model IQueryable<ArtX.Models.Bookmark>
-
-
-    @Html.Partial("BookmarksList", (IQueryable<ArtX.Models.Bookmark>)Model, new ViewDataDictionary {  { "1", actualId }, { "2", isAdmin } });
-
-    @*Pagination:*@
+    <div>
+    @Html.Partial("BookmarksList", (IQueryable<ArtX.Models.Bookmark>)Model, new ViewDataDictionary {  { "1", actualId }, { "2", isAdmin } })
+    </div>
+    
     <div style="display: flex; justify-content: center;">
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li>
 
-
-                    <a href="/Home/Index?page=1" aria-label="Previous" style="    background-color: #161b22;
-        border-color: #21262d;
-    ">
+                    <a href="/Home/Index?page=@(@List+1)" aria-label="Previous" style="background-color: #161b22; border-color: #21262d;">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
-
-
                 </li>
 
                 @for (int i = 1; i <= lastPage; i++)
                 {
 
-
                     <li>
-                        <a href="/Home/Index?page=@i" style="        background-color: #161b22;
-        border-color: #21262d;">@(i)</a>
+                        <a href="/Home/Index?page=@(@List+@i)" style="        background-color: #161b22;border-color: #21262d;">@(i)</a>
                     </li>
-
                 }
-
+                
                 <li>
-
-                    <a href="/Home/Index?page=@(lastPage)" aria-label="Next" style="        background-color: #161b22;
-        border-color: #21262d;
-">
+                    <a href="/Home/Index?page=@(@List+@lastPage)" aria-label="Next" style="background-color: #161b22;border-color: #21262d;">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
-
                 </li>
+
             </ul>
-        </nav>
-    </div>
+        </nav>     </div>
