@@ -3,21 +3,6 @@
     ViewBag.Title = "Index";
 }
 <br />
-@using (Html.BeginForm("Index", "Bookmarks"))
-{
-
-    <select id="Criteriu" name="Criteriu">
-        <option value="Rating">Rating</option>
-        <option value="Data">Data</option>
-    </select>
-
-    <select id="Ordine" name="Ordine">
-        <option value="Desc">Descrescator</option>
-        <option value="Cresc">Crescator</option>
-    </select>
-
-    <input type="submit" value="Sort"  style="background-color: #07545c; border-color: #21262d; color: #00ff90; display: inline-flex;"/>
-}
 
 @if (ViewBag.Message != null)
 {
@@ -49,6 +34,15 @@
                            placeholder="Search topics or keywords"
                            style="background-color: #06090f; border-color: #21262d; color: #c9d1d9; display: inline-flex;">
 
+                    <select id="Criteriu" name="Criteriu">
+                        <option value="Rating">Rating</option>
+                        <option value="Data">Data</option>
+                    </select>
+
+                    <select id="Ordine" name="Ordine">
+                        <option value="Desc">Descrescator</option>
+                        <option value="Cresc">Crescator</option>
+                    </select>
 
                     <button class="btn pull-right" style="background-color: #06090f; color: #c9d1d9; border-color: #21262d;"
                             type="submit">

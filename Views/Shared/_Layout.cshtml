@@ -10,8 +10,9 @@
 
 </head>
 <body style="background-color: #06090f">
-    <div class="navbar navbar-inverse navbar-fixed-top" style="        background-color: #161b22;
-        border-color: #21262d";>@*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
+    <div class="navbar navbar-inverse navbar-fixed-top" style="  position:absolute;      background-color: #161b22;
+        border-color: #21262d" ;>
+        @*navbar-invers il face negru, ia vezi ce se intampla fara fixed top*@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,18 +20,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 style=" text-decoration-style:wavy; font-size:25px; padding-bottom:14px; color: #337ab7;">ArtX</h1> 
+                <h1 style=" text-decoration-style:wavy; font-size:25px; padding-bottom:14px; color: #337ab7;">ArtX</h1>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style=" padding-top: 10px">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
                     <li>@Html.ActionLink("Categories", "Index", "Albums")</li>
-
-                    @*  @if (UserIsInRole("Admin"))
-        {
-            <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
-            <li>@Html.ActionLink("PosteazaBookmark", "New", "Bookmarks")</li>
-        }*@
 
                     @if ((User.IsInRole("User")) || (User.IsInRole("Admin")))
                     {
@@ -40,7 +36,7 @@
                     }
 
 
-                 @*   <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @*   <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -48,15 +44,14 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr style="border-color:#21262d">
-        <footer>
-            <p style="        color: #c9d1d9
-">&copy; @DateTime.Now.Year - ArtX</p>
-    </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+<footer style=" margin-left:20%; margin-right:20%;">
+    <hr style="border-color:#21262d">
+    <p style="bottom:0; color: #c9d1d9">&copy; @DateTime.Now.Year - ArtX</p>
+</footer>
 </html>
