@@ -1,0 +1,43 @@
+﻿@{
+   
+    string actualId = this.ViewData.ContainsKey("1") ? this.ViewData["1"].ToString() : string.Empty;
+    string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty;
+
+}
+
+@Model IQueryable<ArtX.Models.Bookmark>
+
+
+    @*List:*@
+
+    @foreach (var bookmark in Model)
+    {
+        <div class="panel panel-default" style="        border-color: #21262d;
+        overflow: auto;
+        background-color: #161b22;">
+
+            @if (actualId != "-1") //inseamna ca e logat(user sau admin)
+            {
+
+                <form style="margin:0; padding:0;">
+                    @Html.ActionLink(
+                         linkText: "Save",
+                         actionName: "Save",
+                         controllerName: "SavedBookmarks",
+                         routeValues: new { id = bookmark.BookmarkId },
+                         htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
+                         )
+                </form>
+            }
+
+            @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", actualId }, { "2", isAdmin } })
+
+            <div align="center" style="background-color: #0d1117;">
+
+                <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
+                   style="
+                margin-bottom:2px;"><img src="~/icons/chevron-expand.svg" alt="" width="20" height="20" title="Open Bookmark" style="filter: invert(40%) sepia(74%) saturate(475%) hue-rotate(165deg) brightness(94%) contrast(89%);"></a>
+            </div>
+
+        </div>
+    }

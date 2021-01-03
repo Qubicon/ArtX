@@ -14,8 +14,6 @@ namespace ArtX.Controllers
 
         private int _perPage = 3;
 
-        public static string lastC, lastO;
-
         // GET: Bookmarks
         [Authorize(Roles = "User,Admin"), AllowAnonymous]
 
@@ -26,34 +24,6 @@ namespace ArtX.Controllers
 
             db.SaveChanges();*/
             var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date); //default
-
-            if (Criteriu == "Rating" && Ordine == "Desc")
-            {   
-                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => -o.Rating); 
-                lastC = Criteriu;
-                lastO = Ordine;
-            }
-
-            if (Criteriu == "Rating" && Ordine == "Cresc")
-            { 
-                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => o.Rating);
-                lastC = Criteriu;
-                lastO = Ordine;
-            }
-
-            if (Criteriu == "Data" && Ordine == "Desc")
-            { 
-                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date);
-                lastC = Criteriu;
-                lastO = Ordine;
-            }
-
-            if (Criteriu == "Data" && Ordine == "Cresc")
-            { 
-                bookmarks = db.Bookmarks.Include("Album").Include("User").OrderBy(o => o.Date);
-                lastC = Criteriu;
-                lastO = Ordine;
-            }
 
             ViewBag.Bookmarks = bookmarks;
 
@@ -88,19 +58,18 @@ namespace ArtX.Controllers
                     at => at.Title.Contains(search) || at.Description.Contains(search) || at.Tags.Contains(search)).Select(a => a.BookmarkId).ToList();
                 // Search dupa titlu, descriere si tags
 
-                bookmarks = db.Bookmarks.Where(bookmark => listaIds.Contains(bookmark.BookmarkId)).Include("Album").Include("User").OrderBy(a => a.Date);
+                bookmarks = db.Bookmarks.Where(bookmark => listaIds.Contains(bookmark.BookmarkId)).Include("Album").Include("User").OrderBy(a => a.Date); //default
 
-
-                if (lastC == "Rating" && lastO == "Desc")
+                if (Criteriu == "Rating" && Ordine == "Desc")
                     bookmarks = bookmarks.OrderBy(o => -o.Rating);
 
-                if (lastC == "Rating" && lastO == "Cresc")
+                if (Criteriu == "Rating" && Ordine == "Cresc")
                     bookmarks = bookmarks.OrderBy(o => o.Rating);
 
-                if (lastC == "Data" && lastO == "Desc" || lastC == "def" && lastO =="def")
+                if (Criteriu == "Data" && Ordine == "Desc" || Criteriu == "def" && Ordine =="def")
                     bookmarks = bookmarks.OrderByDescending(o => o.Date);
 
-                if (lastC == "Data" && lastO == "Cresc")
+                if (Criteriu == "Data" && Ordine == "Cresc")
                     bookmarks = bookmarks.OrderBy(o => o.Date);
 
                 ViewBag.Bookmarks = bookmarks;
