@@ -211,7 +211,6 @@ D:\ArtX\ArtX\bin\Microsoft.Owin.Security.Twitter.xml
 D:\ArtX\ArtX\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\ArtX\ArtX\bin\Microsoft.Owin.Security.OAuth.xml
 D:\ArtX\ArtX\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\ArtX\ArtX\obj\Debug\ArtX.csprojAssemblyReference.cache
 D:\ArtX\ArtX\obj\Debug\ArtX.Migrations.Initial.resources
 D:\ArtX\ArtX\obj\Debug\ArtX.csproj.GenerateResource.cache
 D:\ArtX\ArtX\obj\Debug\ArtX.csproj.CoreCompileInputs.cache
@@ -328,3 +327,4 @@ C:\Users\Qubicon\Documents\GitHub\ArtX\obj\Debug\ArtX.csproj.CoreCompileInputs.c
 C:\Users\Qubicon\Documents\GitHub\ArtX\obj\Debug\ArtX.csproj.CopyComplete
 C:\Users\Qubicon\Documents\GitHub\ArtX\obj\Debug\ArtX.dll
 C:\Users\Qubicon\Documents\GitHub\ArtX\obj\Debug\ArtX.pdb
+D:\ArtX\ArtX\obj\Debug\ArtX.csprojAssemblyReference.cache

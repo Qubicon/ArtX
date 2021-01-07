@@ -18,10 +18,12 @@ namespace ArtX.Controllers
 
         public ActionResult Index(string Criteriu = "def", string Ordine = "def")
         {
-            /*foreach (var sb in db.SavedBookmarks)
+           /* foreach (var sb in db.SavedBookmarks)
                 db.SavedBookmarks.Remove(sb);
+            foreach (var sb in db.Bookmarks)
+                db.Bookmarks.Remove(sb);*/
 
-            db.SaveChanges();*/
+            db.SaveChanges();
             var bookmarks = db.Bookmarks.Include("Album").Include("User").OrderByDescending(o => o.Date); //default
 
             ViewBag.Bookmarks = bookmarks;

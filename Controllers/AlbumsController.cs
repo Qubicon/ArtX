@@ -92,8 +92,22 @@ namespace ArtX.Controllers
         [Authorize(Roles = "Admin, User")]
         public ActionResult Delete(int id)
         {
-            
             Album album = db.Albums.Find(id);
+
+            foreach (var bmk in db.Bookmarks)
+            {
+                if (bmk.AlbumId == album.AlbumId)
+                {
+                    foreach (var sbm in db.SavedBookmarks)
+                    {
+                        if (sbm.BookmarkId == bmk.BookmarkId)
+                            db.SavedBookmarks.Remove(sbm);
+                    }
+
+                    db.Bookmarks.Remove(bmk);
+                }
+            }
+
             db.Albums.Remove(album);
             db.SaveChanges();
             TempData["message"] = "Albumul a fost sters";
