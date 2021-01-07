@@ -85,6 +85,7 @@ namespace ArtX.Controllers
 
             foreach (SavedBookmark sbm in db.SavedBookmarks)//toate bookmarkurile salvate
             {
+
                 Bookmark bookmark = new Bookmark();
                 if (sbm.UserId == currentUserId)    //daca a fost salvat de userul curent
                 {
