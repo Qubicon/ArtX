@@ -70,37 +70,40 @@
 
 @foreach (var bookmark in ViewBag.Bookmarks)
 {
-    <div class="panel panel-default" style="        border-color: #21262d;
+<div class="panel panel-default" style="        border-color: #21262d;
+        float: left;
+        width: 40%;
+        margin-left:30%;
         overflow: auto;
         background-color: #161b22;">
 
-        @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
-        {
+    @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
+    {
 
-            <form style="margin:0; padding:0;">
-                @Html.ActionLink(
-                     linkText: "Save",
-                     actionName: "Save",
-                     controllerName: "SavedBookmarks",
-                     routeValues: new { id = bookmark.BookmarkId },
-                     htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
-                     )
-            </form>
-        }
+        <form style="margin:0; padding:0;">
+            @Html.ActionLink(
+                 linkText: "Save",
+                 actionName: "Save",
+                 controllerName: "SavedBookmarks",
+                 routeValues: new { id = bookmark.BookmarkId },
+                 htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
+                 )
+        </form>
+    }
 
-        @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
+    @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
-        <div align="center" style="background-color: #0d1117;">
+    <div align="center" style="background-color: #0d1117;">
 
-            <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
-               style="
+        <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
+           style="
                 margin-bottom:2px;"><img src="~/icons/chevron-expand.svg" alt="" width="20" height="20" title="Open Bookmark" style="filter: invert(40%) sepia(74%) saturate(475%) hue-rotate(165deg) brightness(94%) contrast(89%);"></a>
-        </div>
-
     </div>
+
+</div>
 }
 
-<div style="display: flex; justify-content: center;">
+<div style="display: flex; justify-content: center;  clear:both;">
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li>
