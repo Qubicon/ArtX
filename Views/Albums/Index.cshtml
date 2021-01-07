@@ -19,10 +19,11 @@
 <br />
 }
 
-<a href="/Albums/New" class="btn btn-primary" style="        background-color: #161b22;
+<a href="/Albums/New" class="btn btn-primary" style="
+        margin-left: 36.5%;
+        background-color: #161b22;
         border-color: #21262d;
-        
-">
+    ">
     <img src="~/icons/folder-plus.svg" alt="Add Category" width="24" height="24" title="Delete" style="filter: invert(99%) sepia(5%) saturate(0%) hue-rotate(205deg) brightness(119%) contrast(100%);"> Adauga o noua categorie
 </a>
 <br />
@@ -30,11 +31,11 @@
 
 @foreach (var album in ViewBag.Albums)
 {
-    <div class="panel panel-default" style="        width: 250px;
-        border-color: #21262d;
+    <div class="panel panel-default" style="    width: 250px;
+        margin-left: 35%;
+      @*  border-color: #21262d;*@
         overflow: auto;
-        margin: 0;
-">
+    ">
         <div class="panel-heading" style="        background-color: #161b22;
         border-color: #21262d;
         color: #337ab7;
@@ -46,7 +47,7 @@
         height:65px;">
             <br />
 
-            <a class="btn pull-left" href="/Albums/Show/@album.AlbumId">
+            <a class="btn pull-left" href="/Albums/Show/@album.AlbumId" style="">
                 <img src="~/icons/folder2-open.svg" alt="Open Category" width="24" height="24" title="Delete" style="filter: invert(41%) sepia(23%) saturate(1468%) hue-rotate(166deg) brightness(101%) contrast(88%);">
             </a>
 

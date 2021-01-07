@@ -1,47 +1,47 @@
 ﻿@model ArtX.Models.Bookmark
 
+<div style="margin-left: 35%;">
+    <h2>Add bookmark</h2>
 
-<h2>Add bookmark</h2>
+    @using (Html.BeginForm(actionName: "New", controllerName: "Bookmarks"))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm(actionName: "New", controllerName: "Bookmarks"))
-{
-    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.Label("Title", "Titlu Bookmark")
+        <br />
+        @Html.TextBox("Title", null, new { @class = "form-control" })
 
-    @Html.Label("Title", "Titlu Bookmark")
-    <br />
-    @Html.TextBox("Title", null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+        <br />
 
-    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
-    <br />
+        @Html.Label("Content", "Continut Bookmark")
+        <br />
+        @Html.TextArea("Content", null, new { @class = "form-control" })
+        @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+        <br />
 
-    @Html.Label("Content", "Continut Bookmark")
-    <br />
-    @Html.TextArea("Content", null, new { @class = "form-control" })
-    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
-    <br />
-
-    @Html.Label("Description", "Descriere bookmark")
-    <br />
-    @Html.TextBox("Description", null, new { @class = "form-control" })
-    <br />
-
-
-    @Html.Label("Tags", "Tags bookmark")
-    <br />
-    @Html.TextBox("Tags", null, new { @class = "form-control" })
-    <br />
-
-    <br />
-
-    <label>Album</label>
-    @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Alb, "Value", "Text"),
-    "Selectati albumul", new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
-    <br />
+        @Html.Label("Description", "Descriere bookmark")
+        <br />
+        @Html.TextBox("Description", null, new { @class = "form-control" })
+        <br />
 
 
-    <button class="btn btn-sm btn-success" type="submit">Adauga bookmark</button>
+        @Html.Label("Tags", "Tags bookmark")
+        <br />
+        @Html.TextBox("Tags", null, new { @class = "form-control" })
+        <br />
 
-}
+        <br />
+
+        <label>Album</label>
+        @Html.DropDownListFor(m => m.AlbumId, new SelectList(Model.Alb, "Value", "Text"),
+        "Selectati albumul", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
+        <br />
+
+
+        <button class="btn btn-sm btn-success" type="submit">Adauga bookmark</button>
+
+    }
+</div>
 <br />
-<a href="/Bookmarks/Index">Inapoi la lista de bookmarks</a>
