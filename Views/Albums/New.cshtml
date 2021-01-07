@@ -4,16 +4,18 @@
     ViewBag.Titlu = "New";
 }
 
-<h2>New album</h2>
+<div style="margin-left: 35%;">
+    <h2>New category</h2>
 
-<form method="post" action="/Albums/New">
-    @Html.Label("AlbumTitle", "Titlu album")
+    <form method="post" action="/Albums/New">
+        @Html.Label("AlbumTitle", "")
+        <br />
+        @Html.TextBox("AlbumTitle", null, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-sm btn-success" type="submit">Adauga categoria</button>
+
+    </form>
+</div>
+
     <br />
-    @Html.TextBox("AlbumTitle",null, new { @class="form-control"})
     <br />
-    <button class="btn btn-sm btn-success" type="submit">Adauga album</button>
-
-</form>
-
-<br />
-<br />

@@ -1,47 +1,49 @@
 ﻿@model ArtX.Models.Bookmark
 
-<h2>Edit bookmark</h2>
 
-@using (Html.BeginForm(actionName: "Edit", controllerName: "Bookmarks"))
-{
-    @Html.HttpMethodOverride(HttpVerbs.Put)
+<div style="margin-left: 35%;">
+    <h2>Edit bookmark</h2>
 
-    @Html.HiddenFor(m => m.BookmarkId)
-    <br />
-    @Html.Label("Title", "Titlu Bookmark")
-    <br />
-    @Html.Editor("Title", new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-    <br />
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Bookmarks"))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Put)
 
-    @Html.Label("Content", "Continut Bookmark")
-    <br />
-    @Html.EditorFor(m => m.Content, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
-    <br />
+        @Html.HiddenFor(m => m.BookmarkId)
+        <br />
+        @Html.Label("Title", "Titlu Bookmark")
+        <br />
+        @Html.Editor("Title", new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+        <br />
 
-    @Html.Label("Description", "Descriere Bookmark")
-    <br />
-    @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
-    <br />
+        @Html.Label("Content", "Continut Bookmark")
+        <br />
+        @Html.EditorFor(m => m.Content, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+        <br />
 
-    @Html.Label("Tags", "Bookmark's Tags")
-    <br />
-    @Html.Editor("Tags", new { htmlAttributes = new { @class = "form-control" } })
-    <br />
+        @Html.Label("Description", "Descriere Bookmark")
+        <br />
+        @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
+        <br />
 
-    @Html.HiddenFor(m => m.Date)
+        @Html.Label("Tags", "Bookmark's Tags")
+        <br />
+        @Html.Editor("Tags", new { htmlAttributes = new { @class = "form-control" } })
+        <br />
 
-    <label>Album</label>
-    @Html.DropDownListFor(m => m.AlbumId,
-        new SelectList(Model.Alb, "Value", "Text"),
-        "Selectati albumul", new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
-    <br />
+        @Html.HiddenFor(m => m.Date)
 
-    <button class="btn btn-sm btn-success" type="submit">Modifica bookmark</button>
-}
+        <label>Album</label>
+        @Html.DropDownListFor(m => m.AlbumId,
+            new SelectList(Model.Alb, "Value", "Text"),
+            "Selectati albumul", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AlbumId, "", new { @class = "text-danger" })
+        <br />
 
+        <button class="btn btn-sm btn-success" type="submit">Modifica bookmark</button>
+    }
+</div>
 
 @*<form method="post" action="/Bookmarks/Edit/@ViewBag.Bookmark.BookmarkId">
         @Html.HttpMethodOverride(HttpVerbs.Put)

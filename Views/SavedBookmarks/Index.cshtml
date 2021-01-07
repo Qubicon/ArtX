@@ -10,6 +10,8 @@
 @foreach (var bookmark in ViewBag.myBookmarks)
 {
     <div class="panel panel-default" style="        background-color: #161b22;
+        width: 40%;
+        margin-left: 30%;
         border-color: #21262d;">
         <a class="btn pull-right" position="fixed" href="/SavedBookmarks/Remove/@bookmark.BookmarkId">
             <img src="~/icons/bookmark-x-fill.svg" style="        width: 20px;
