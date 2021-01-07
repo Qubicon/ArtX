@@ -228,7 +228,7 @@ namespace ArtX.Controllers
                         db.SaveChanges();
                         TempData["message"] = "Bookmark-ul a fost modificat!";
                     }
-                    return RedirectToAction(Request.UrlReferrer.ToString());
+                    return RedirectToAction("Index");
                 }
                 else
                 { 
