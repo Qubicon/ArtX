@@ -1,59 +1,58 @@
 ﻿
 @{
     string actualId = this.ViewData.ContainsKey("1") ? this.ViewData["1"].ToString() : string.Empty;
-    string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty; //acum nu mai folosim asta aici, ca am afisat din Bookmarks/Index
-}                                                                                                @*dar il mai tinem ca poate o sa avem nevoie din nou*@
+    string isAdmin = this.ViewData.ContainsKey("2") ? this.ViewData["2"].ToString() : string.Empty;
+}
 
 <div class="panel-heading" style="background-color: #161b22; border-color: #21262d; overflow: auto;">
-    <big style="        color: #337ab7;
+    <big style="        color: #3fcfc4;
+        border-bottom-color: aquamarine;
         font-family: Helvetica;
+        font-weight: bold;
         font-size: 17px;
         align-content: space-between;">@Model.Title</big>
         <br />
         <i class="glyphicon glyphicon-user" style="    color: #c9d1d9;
     "><strong><small style="font-family: Helvetica"> @Model.User.UserName</small> </strong></i>
+    <br />
 </div>
 
-<div class="panel-body" style="background-color: #0d1117; color: #c9d1d9; overflow: auto;">
+<div class="panel-body" style="background-color: #0d1117; color: #c9d1d9; ">
     <strong>@Model.Content</strong>
     <br />
     <hr style="border-color:#21262d">
+
+    <strong style="color: #33b7ad;">@Model.Description</strong> <br />
+    <strong style="background-color: #2f6dd0;width: auto">@Model.Tags</strong>
+    <br />
+    <i class="glyphicon glyphicon-globe" style=" clear: both;"></i> @Model.Album.AlbumTitle
+
+    <br />
     <span class="label">@Model.Date</span>
 
+    @*<div class="like" style="float: right; width: auto">
+            <strong>@Model.Rating</strong> <img src="~/icons/hand-thumbs-up.svg" alt="thumbs-up" width="20" height="20" title="Delete" style="filter:invert(40%) sepia(39%) saturate(855%) hue-rotate(166deg) brightness(100%) contrast(91%);">
+        </div>*@
+    <br />
 
-    <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
+    <hr style="border-color:#21262d">
 
-    <strong style="        background-color: #ff0059;
-        float: right; width: auto">@Model.Tags</strong>
-        <br />
-        <br />
-        <strong style="        color: #33b7ad;
-">@Model.Description</strong>
+    @if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
+    {
+        <a class="btn pull-left" style="        background-color: #0d1117;" href="/Bookmarks/Edit/@Model.BookmarkId">
+            <img src="~/icons/pen.svg" alt="" width="20" height="20" title="Edit" style="filter: invert(46%) sepia(64%) saturate(618%) hue-rotate(166deg) brightness(80%) contrast(81%); ">
+        </a>
+    }
+    @if (actualId == Model.UserId || isAdmin == "da")
+    {
+        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId" style="background-color:#1f1f1f;">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn pull-right" type="submit" style="background-color:#0d1117">
 
+                <img src="~/icons/trash.svg" alt="" width="20" height="20" title="Delete" style="filter: invert(33%) sepia(75%) saturate(1295%) hue-rotate(330deg) brightness(87%) contrast(96%);">
 
-<div class="like" style="float: right; width: auto">
-    <strong>@Model.Rating</strong> <img src="~/icons/hand-thumbs-up.svg" alt="thumbs-up" width="20" height="20" title="Delete" style="filter:invert(40%) sepia(39%) saturate(855%) hue-rotate(166deg) brightness(100%) contrast(91%);">
-</div>
-<br />
-
-<hr style="border-color:#21262d">
-
-@if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
-{
-    <a class="btn pull-left" style="        background-color: #0d1117;" href="/Bookmarks/Edit/@Model.BookmarkId">
-        <img src="~/icons/pen.svg" alt="" width="20" height="20" title="Edit" style="filter: invert(46%) sepia(64%) saturate(618%) hue-rotate(166deg) brightness(80%) contrast(81%); ">
-    </a>
-}
-@if (actualId == Model.UserId || isAdmin == "da")
-{
-    <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId" style="background-color:#1f1f1f;">
-        @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn pull-right" type="submit" style="background-color:#0d1117">
-
-            <img src="~/icons/trash.svg" alt="" width="20" height="20" title="Delete" style="filter: invert(33%) sepia(75%) saturate(1295%) hue-rotate(330deg) brightness(87%) contrast(96%);">
-
-        </button>
-    </form>
-}
+            </button>
+        </form>
+    }
 
 </div>
