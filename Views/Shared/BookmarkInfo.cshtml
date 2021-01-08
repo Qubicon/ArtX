@@ -15,38 +15,45 @@
 </div>
 
 <div class="panel-body" style="background-color: #0d1117; color: #c9d1d9; overflow: auto;">
-    Continut articol: <strong>@Model.Content</strong>
+    <strong>@Model.Content</strong>
     <br />
-    <span class="label label-success">@Model.Date</span>
-    <br />
-    Rating: <strong>@Model.Rating</strong>
-    <br />
-    Descriere: <strong>@Model.Description</strong>
-    <br />
-    <strong>@Model.Tags</strong>
-
-    <br />
-    <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
-    <br />
-
     <hr style="border-color:#21262d">
+    <span class="label">@Model.Date</span>
 
-    @if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
-    {
-        <a class="btn pull-left" style="        background-color: #0d1117;" href="/Bookmarks/Edit/@Model.BookmarkId">
-            <img src="~/icons/pen.svg" alt="" width="20" height="20" title="Edit" style="filter: invert(46%) sepia(64%) saturate(618%) hue-rotate(166deg) brightness(80%) contrast(81%); ">
-        </a>
-    }
-    @if (actualId == Model.UserId || isAdmin == "da")
-    {
-        <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId" style="background-color:#1f1f1f;">
-            @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn pull-right" type="submit" style="background-color:#0d1117">
 
-                <img src="~/icons/trash.svg" alt="" width="20" height="20" title="Delete" style="filter: invert(33%) sepia(75%) saturate(1295%) hue-rotate(330deg) brightness(87%) contrast(96%);">
+    <i class="glyphicon glyphicon-globe"></i> @Model.Album.AlbumTitle
 
-            </button>
-        </form>
-    }
+    <strong style="        background-color: #ff0059;
+        float: right; width: auto">@Model.Tags</strong>
+        <br />
+        <br />
+        <strong style="        color: #33b7ad;
+">@Model.Description</strong>
+
+
+<div class="like" style="float: right; width: auto">
+    <strong>@Model.Rating</strong> <img src="~/icons/hand-thumbs-up.svg" alt="thumbs-up" width="20" height="20" title="Delete" style="filter:invert(40%) sepia(39%) saturate(855%) hue-rotate(166deg) brightness(100%) contrast(91%);">
+</div>
+<br />
+
+<hr style="border-color:#21262d">
+
+@if (actualId == Model.UserId)//daca userul actual este cel care a creeat bookmarkul
+{
+    <a class="btn pull-left" style="        background-color: #0d1117;" href="/Bookmarks/Edit/@Model.BookmarkId">
+        <img src="~/icons/pen.svg" alt="" width="20" height="20" title="Edit" style="filter: invert(46%) sepia(64%) saturate(618%) hue-rotate(166deg) brightness(80%) contrast(81%); ">
+    </a>
+}
+@if (actualId == Model.UserId || isAdmin == "da")
+{
+    <form method="post" action="/Bookmarks/Delete/@Model.BookmarkId" style="background-color:#1f1f1f;">
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn pull-right" type="submit" style="background-color:#0d1117">
+
+            <img src="~/icons/trash.svg" alt="" width="20" height="20" title="Delete" style="filter: invert(33%) sepia(75%) saturate(1295%) hue-rotate(330deg) brightness(87%) contrast(96%);">
+
+        </button>
+    </form>
+}
 
 </div>

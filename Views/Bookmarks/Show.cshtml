@@ -3,9 +3,12 @@
 }
 
 <br />
-<a href="/Bookmarks/Index" class="btn btn-default glyphicon glyphicon-arrow-left"></a>
-@*<br /><a href="/Albums/AlbumId?">Inapoi la album</a> sau o sa mai putem ajunge la un bookmark plecand dintr un singur album*@
+<br />
 
+<a href="/Bookmarks/Index" class="btn btn-default glyphicon glyphicon-arrow-left"></a>
+<br>
+@*<br /><a href="/Albums/AlbumId?">Inapoi la album</a> sau o sa mai putem ajunge la un bookmark plecand dintr un singur album*@
+<br />
     @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark) ViewBag.Bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
 
 <br />
@@ -49,20 +52,20 @@
 }
 
 @if (ViewBag.userId != "-1") //daca este inregistrat poate sa adauge
-{<div class="container">
+{<div class="container" style="border-color: #21262d;">
     <div class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-            <div class="panel">
+            <div class="panel" style="border-color: #21262d;">
                 <form method="post" action="/Comments/New">
-                    <div class="panel-body">
+                    <div class="panel-body" style="        background-color: #06090f;">
                         <input type="hidden" name="BookmarkId" value="@ViewBag.Bookmark.BookmarkId" />
                         <label>Continut comentariu</label>
                         <br />
                         <textarea class="form-control" name="Content"></textarea>
                         <br />
-                        <button class="btn btn-success " type="submit">Adauga comentariu</button>
+                        <button class="btn" style="background-color: #337ab7 " type="submit">Adauga comentariu</button>
                     </div>
                 </form>
             </div>
