@@ -13,25 +13,26 @@
             @if (actualId != "-1") //inseamna ca e logat(user sau admin)
             {
 
-                <form style="margin:0; padding:0;">
+                <form style="margin-bottom:3%; padding:0;">
                     @Html.ActionLink(
-                         linkText: "Save",
+                         linkText: " ",
                          actionName: "Save",
                          controllerName: "SavedBookmarks",
                          routeValues: new { id = bookmark.BookmarkId },
                          htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
                          )
                 </form>
-            }
+                <h style="float:right; margin-right:4%; color:dodgerblue; clear:both;">@bookmark.Rating</h>
+                }
 
-            @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", actualId }, { "2", isAdmin } })
+                @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", actualId }, { "2", isAdmin } })
 
-            <div align="center" style="background-color: #0d1117;">
+                <div align="center" style="background-color: #0d1117;">
 
-                <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
-                   style="
+                    <a class="btn" href="/Bookmarks/Show/@bookmark.BookmarkId"
+                       style="
                 margin-bottom:2px;"><img src="~/icons/chevron-expand.svg" alt="" width="20" height="20" title="Open Bookmark" style="filter: invert(40%) sepia(74%) saturate(475%) hue-rotate(165deg) brightness(94%) contrast(89%);"></a>
-            </div>
+                </div>
 
-        </div>
+</div>
     }

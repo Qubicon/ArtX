@@ -39,7 +39,7 @@
                         <img src="~/icons/search.svg" / style="filter: invert(95%) sepia(5%) saturate(571%) hue-rotate(178deg) brightness(90%) contrast(88%); ">
                     </button>
 
-                    <select id="Criteriu" name="Criteriu" >
+                    <select id="Criteriu" name="Criteriu">
                         <option value="Rating">Rating</option>
                         <option value="Data">Data</option>
                     </select>
@@ -80,15 +80,16 @@
     @if (ViewBag.userId != "-1") //inseamna ca e logat(user sau admin)
     {
 
-        <form style="margin:0; padding:0;">
+        <form style="margin-bottom:3%; padding:0;">
             @Html.ActionLink(
-                 linkText: "Save",
+                 linkText: " ",
                  actionName: "Save",
                  controllerName: "SavedBookmarks",
                  routeValues: new { id = bookmark.BookmarkId },
                  htmlAttributes: new { @class = "btn pull-right glyphicon glyphicon-bookmark", @style = "background-color: #161b22, height: 150px; margin:0; padding: 15px;" }
                  )
         </form>
+        <h style="float:right; margin-right:4%; color:dodgerblue; clear:both;">@bookmark.Rating</h>
     }
 
     @Html.Partial("BookmarkInfo", (ArtX.Models.Bookmark)bookmark, new ViewDataDictionary { { "1", ViewBag.userId }, { "2", ViewBag.b } })
@@ -101,6 +102,7 @@
     </div>
 
 </div>
+    <br /><br /><br />
 }
 
 <div style="display: flex; justify-content: center;  clear:both;">

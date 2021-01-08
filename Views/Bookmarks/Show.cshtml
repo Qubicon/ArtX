@@ -15,15 +15,15 @@
 @foreach (var comm in ViewBag.Bookmark.Comments)
 {
 
-    <div class="container" style=" width: 30%">
+    <div class="container" style=" width: 70%">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div style="color:#e5e5e5">
-                    <p>@comm.Content</p>
+                <div style="color: lightskyblue">
+                    <p style="color: lightgrey;">@comm.Content</p>
                     <small class="pull-right">@comm.Date</small>
                     <i class="glyphicon glyphicon-user"></i>
-                    <strong style="color:#0ec7c7"> @comm.User.UserName </strong>
+                    <strong style=""> @comm.User.UserName </strong>
                 </div>
 
 
@@ -40,7 +40,7 @@
                     <div style="display: inline-block; float : left">
                         <form method="post" action="/Comments/Delete/@comm.CommentId">
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
-                            <button class="glyphicon glyphicon-trash" style="color:lightgrey; border: none; background: transparent" type="submit"></button>
+                            <button class="glyphicon glyphicon-trash" style="color:rgba(151, 26, 26, 0.95); border: none; background: transparent" type="submit"></button>
                         </form>
                     </div>
                 }
